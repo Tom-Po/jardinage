@@ -1,0 +1,30 @@
+.App {
+  font-size: 1rem;
+  padding: 0 2rem;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+}
+
+.Logo {
+  margin: 0 1rem;
+}
+
+.Header svg {
+  fill: var(--green);
+}
+
+.Header span {
+  color: var(--orange);
+}
+
+.Seeds {
+  display: flex;
+  gap: .5rem;
+}
+
+.Seeds>div {
+  flex-basis: 33%;
+}

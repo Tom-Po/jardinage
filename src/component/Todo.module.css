@@ -1,0 +1,30 @@
+.Todo {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    margin: .5rem;
+    position: relative;
+    border-radius: 8px;
+}
+
+.Todo:hover {
+    outline: 2px solid var(--green);
+}
+
+.Complete {
+    background-color: var(--green);
+    color: white;
+    outline: 2px solid var(--green);
+}
+
+.Remove {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.Remove svg {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
