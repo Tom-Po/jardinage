@@ -1,0 +1,8 @@
+.Seeds {
+    display: flex;
+    gap: .5rem;
+}
+
+.Seeds>div {
+    flex-basis: 33%;
+}

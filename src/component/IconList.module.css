@@ -1,0 +1,17 @@
+.IconList {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.Icon {
+    transition: all 200ms ease;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.Icon:hover {
+    transform: scale(1.2);
+}
