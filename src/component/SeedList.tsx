@@ -7,7 +7,14 @@ const SeedList = () => {
     const [seeds, setSeeds] = useState<SeedType[]>([])
 
     const getSeeds = () => axios.get("http://localhost:3000/seeds")
-        .then((data) => setSeeds(data.data))
+        .then((data) => {
+            setSeeds(data.data)
+            let currentMonthSeeds = data.data.filter((seed: SeedType) => {
+                return seed.growingMonths.includes(today.getMonth())
+            })
+            setAllCurrent(currentMonthSeeds)
+
+        })
 
     const updateSeedApi = (seed: SeedType) => axios.put(`http://localhost:3000/seeds/${seed.id}`, seed)
         .then(() => getSeeds())
@@ -29,10 +36,15 @@ const SeedList = () => {
         getSeeds()
     }, [])
 
+    const [allCurrent, setAllCurrent] = useState<SeedType[]>([])
+
     const today = new Date()
+
     return <>
         <h2>Semis</h2>
-        <div>{today.getMonth() + 1}</div>
+        {allCurrent.map(current => (
+            <div key={current.id}> current {current.name}</div>
+        ))}
         <div className={styles.Seeds}>
             {seeds.map((seed, index) => (
                 <Seed key={index} id={index} updateSeed={updateSeed} deleteSeed={deleteSeed} seed={seed} />

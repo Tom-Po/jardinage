@@ -19,7 +19,8 @@ const About = () => (
                 <li>liste des semis</li>
                 <li>association de mois</li>
                 <li>description</li>
-                <li>? lien auto rustica ?</li>
+
+                <li>A PLANTER | A RECOLTER | A DEGUSTER</li>
                 {/* Lien outil de recherche */}
                 {/* https://www.rustica.fr/recherche.html?recherche=cerise+griotte */}
             </ul>

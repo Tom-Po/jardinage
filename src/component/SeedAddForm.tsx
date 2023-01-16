@@ -20,7 +20,12 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
 
     const navigate = useNavigate()
 
-    const resetSeed = () => setSeed(initialSeed)
+    const resetSeed = () => setSeed({
+        id: 0,
+        name: "",
+        growingMonths: [],
+        type: "Aromatiques"
+    })
 
     const setSeedName = (name: string) => {
         setSeed({
@@ -46,19 +51,21 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
         axios.post(`http://localhost:3000/seeds/`, newSeed)
             .then(() => {
                 resetSeed()
-                navigate('/')
             })
     }
 
     return (
         <form onSubmit={submitSeed}>
+            <Button onClick={() => setSeed({ ...initialSeed })}>rest</Button>
+
             <div>
                 <h4>Nouveau semi</h4>
-                <Seed seed={seed} updateSeed={toggleGrowingMonth} noLink displayMonth />
+                <Seed deleteSeed={() => { }} seed={seed} updateSeed={toggleGrowingMonth} noLink displayMonth />
             </div>
             <input type="text" value={seed.name} onSubmit={submitSeed} onChange={(e) => setSeedName(e.target.value)} />
             <Button onClick={submitSeed}>Ajouter</Button>
         </form>
+
     )
 }
 

@@ -1,42 +1,49 @@
 {
   "seeds": [
     {
-      "id": 2,
+      "id": 1,
       "growingMonths": [
-        8,
-        9,
-        10,
-        11,
         0,
         1
       ],
+      "name": "Radis",
+      "type": "Aromatiques"
+    },
+    {
+      "id": 2,
       "name": "Butternut",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 3,
-      "growingMonths": [
-        1,
-        5
-      ],
-      "name": "azdad",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 4,
       "growingMonths": [
         5,
-        6
+        6,
+        7,
+        9,
+        8,
+        10,
+        11
       ],
-      "name": "Butternut 2",
       "type": "Aromatiques"
     }
   ],
   "todos": [
     {
-      "text": "efmlkfezmfezlezm lkfez",
+      "text": "Bouturage arbre",
       "isCompleted": false,
-      "id": 1
+      "id": 2
+    },
+    {
+      "text": "Drageon de chataigner en foret Septembre",
+      "isCompleted": false,
+      "id": 3
+    },
+    {
+      "text": "Cerise, prunes, poires, figues, ",
+      "isCompleted": false,
+      "id": 4
+    },
+    {
+      "text": "Troc de plante, Facebook",
+      "isCompleted": false,
+      "id": 5
     }
   ],
   "users": [
