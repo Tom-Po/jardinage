@@ -22,6 +22,7 @@ const MONTHS = [
 ]
 
 export type SeedType = {
+    id: number,
     name: string,
     type: 'Tomate' | 'Choux' | 'Courge' | 'Aromatiques' | 'Plantes potagères',
     growingMonths: number[]
@@ -41,7 +42,7 @@ const Seed: React.FC<ISeed> = ({ id, seed, updateSeed }) => {
             {showMonths && (
                 <div className={styles.Months}>
                     {MONTHS.map((month, i) => (
-                        <div key={i} onClick={() => updateSeed(id, i)} className={`${styles.Month} ${seed.growingMonths.includes(i) && styles.Active} `}>
+                        <div key={i} onClick={() => updateSeed(seed, i)} className={`${styles.Month} ${seed.growingMonths.includes(i) && styles.Active} `}>
                             {month.slice(0, 3)}.
                         </div>
                     ))}

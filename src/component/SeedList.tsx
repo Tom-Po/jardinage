@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import Seed from "./Seed";
+import Seed, { SeedType } from "./Seed";
 import styles from './SeedList.module.css';
 
 const SeedList = () => {
@@ -10,27 +10,34 @@ const SeedList = () => {
         setSeeds(data.data)
     })
 
-    const updateSeedApi = (index: number, seed: SeedType) => axios.put(`http://localhost:3000/seeds/${index + 1}`, seed).then(() => getSeeds())
+    const updateSeedApi = (seed: SeedType) => axios.put(`http://localhost:3000/seeds/${seed.id}`, seed)
+        .then(() => getSeeds())
 
-    const updateSeed = (index: number, monthIndex: number) => {
-        let newSeeds = seeds.slice()
+    const updateSeed = (seed: SeedType, monthIndex: number) => {
+        let updatedSeed = { ...seed }
+        console.log(updatedSeed.growingMonths);
 
-        if (newSeeds[index].growingMonths.includes(monthIndex)) {
-            newSeeds[index].growingMonths.splice(newSeeds[index].growingMonths.indexOf(monthIndex), 1)
+        if (updatedSeed.growingMonths.includes(monthIndex)) {
+            updatedSeed.growingMonths.splice(updatedSeed.growingMonths.indexOf(monthIndex), 1)
         } else {
-            newSeeds[index].growingMonths.push(monthIndex)
+            updatedSeed.growingMonths.push(monthIndex)
         }
 
-        updateSeedApi(index, newSeeds[index])
+        updateSeedApi(updatedSeed)
     }
+
     useEffect(() => {
         getSeeds()
     }, [])
-    return <div className={styles.Seeds}>
-        {seeds.map((seed, index) => (
-            <Seed key={index} id={index} updateSeed={updateSeed} seed={seed} />
-        ))}
-    </div>
+
+    return <>
+        <h2>Seeds</h2>
+        <div className={styles.Seeds}>
+            {seeds.map((seed, index) => (
+                <Seed key={index} id={index} updateSeed={updateSeed} seed={seed} />
+            ))}
+        </div>
+    </>
 }
 
 

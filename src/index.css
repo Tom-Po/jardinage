@@ -80,6 +80,8 @@ select {
 
   --accent-color: var(--orange);
   --secondary-accent-color: var(--green);
+
+  --success-text-color: var(--green)
 }
 
 body {

@@ -19,3 +19,7 @@
 .Header span {
   color: var(--orange);
 }
+
+:global(.success-text) {
+  color: var(--success-text-color)
+}
