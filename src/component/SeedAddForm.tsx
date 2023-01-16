@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Seed, { SeedType } from "./Seed";
 
@@ -17,11 +18,9 @@ const initialSeed: SeedType = {
 const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
     const [seed, setSeed] = useState(initialSeed)
 
-    const resetSeed = () => setSeed({
-        ...seed,
-        name: '',
-        growingMonths: []
-    })
+    const navigate = useNavigate()
+
+    const resetSeed = () => setSeed(initialSeed)
 
     const setSeedName = (name: string) => {
         setSeed({
@@ -47,7 +46,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
         axios.post(`http://localhost:3000/seeds/`, newSeed)
             .then(() => {
                 resetSeed()
-                onSubmit()
+                navigate('/')
             })
     }
 

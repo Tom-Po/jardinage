@@ -2,6 +2,13 @@
     border: 1px solid grey;
     margin-bottom: 1rem;
     padding: 1rem;
+    position: relative;
+}
+
+.Delete {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .Months {

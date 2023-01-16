@@ -1,16 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import Button from "./Button";
 import Seed, { SeedType } from "./Seed";
-import SeedAddForm from "./SeedAddForm";
 import styles from './SeedList.module.css';
 
 const SeedList = () => {
     const [seeds, setSeeds] = useState<SeedType[]>([])
 
-    const getSeeds = () => axios.get("http://localhost:3000/seeds").then((data) => {
-        setSeeds(data.data)
-    })
+    const getSeeds = () => axios.get("http://localhost:3000/seeds")
+        .then((data) => setSeeds(data.data))
 
     const updateSeedApi = (seed: SeedType) => axios.put(`http://localhost:3000/seeds/${seed.id}`, seed)
         .then(() => getSeeds())
@@ -22,23 +19,25 @@ const SeedList = () => {
         } else {
             updatedSeed.growingMonths.push(monthIndex)
         }
-
         updateSeedApi(updatedSeed)
     }
+
+    const deleteSeed = (seed: SeedType) => axios.delete(`http://localhost:3000/seeds/${seed.id}`)
+        .then(() => getSeeds())
 
     useEffect(() => {
         getSeeds()
     }, [])
 
-
+    const today = new Date()
     return <>
         <h2>Semis</h2>
+        <div>{today.getMonth() + 1}</div>
         <div className={styles.Seeds}>
             {seeds.map((seed, index) => (
-                <Seed key={index} id={index} updateSeed={updateSeed} seed={seed} />
+                <Seed key={index} id={index} updateSeed={updateSeed} deleteSeed={deleteSeed} seed={seed} />
             ))}
         </div>
-        <SeedAddForm onSubmit={getSeeds} />
     </>
 }
 

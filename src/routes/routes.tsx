@@ -1,5 +1,6 @@
 import { RouteProps } from "react-router-dom";
 import About from "../component/About";
+import SeedAddForm from "../component/SeedAddForm";
 import SeedList from "../component/SeedList";
 import TodoList from "../component/TodoList";
 
@@ -10,6 +11,11 @@ export const routes: NamedRoute[] = [
         name: 'Semis',
         path: '/',
         element: <SeedList />,
+    },
+    {
+        name: 'Créer un semi',
+        path: '/seeds',
+        element: <SeedAddForm onSubmit={() => { }} />,
     },
     {
         name: 'A faire',

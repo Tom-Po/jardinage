@@ -1,73 +1,52 @@
 {
   "seeds": [
     {
-      "id": 1,
-      "name": "Radis",
-      "growingMonths": [
-        0,
-        2,
-        3,
-        4
-      ]
-    },
-    {
       "id": 2,
-      "name": "Rhubarbe",
       "growingMonths": [
+        8,
+        9,
+        10,
+        11,
         0,
-        3,
-        4,
-        5,
-        6,
-        2,
         1
-      ]
+      ],
+      "name": "Butternut",
+      "type": "Aromatiques"
     },
     {
-      "growingMonths": [],
-      "name": "Coriandre",
-      "type": "Aromatiques",
-      "id": 3
+      "id": 3,
+      "growingMonths": [
+        1,
+        5
+      ],
+      "name": "azdad",
+      "type": "Aromatiques"
     },
     {
       "id": 4,
       "growingMonths": [
-        6,
-        10,
-        0,
-        2,
-        4,
-        8
+        5,
+        6
       ],
-      "name": "Coriandre Vietnam",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 5,
-      "growingMonths": [
-        0,
-        1,
-        2
-      ],
-      "name": "Courge",
+      "name": "Butternut 2",
       "type": "Aromatiques"
     }
   ],
   "todos": [
     {
-      "text": "dzada",
-      "isCompleted": true,
-      "id": 2
-    },
-    {
-      "text": "azda",
-      "isCompleted": true,
-      "id": 3
-    },
-    {
-      "text": "azdzazd",
+      "text": "efmlkfezmfezlezm lkfez",
       "isCompleted": false,
-      "id": 4
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Jogn"
+    },
+    {
+      "id": 2,
+      "name": "David"
     }
   ]
 }

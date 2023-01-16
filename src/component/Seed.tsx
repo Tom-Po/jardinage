@@ -5,21 +5,8 @@
 
 import { useState } from 'react'
 import styles from './Seed.module.css'
-
-const MONTHS = [
-    "Janvier",
-    "Février",
-    "Mars",
-    "Avril",
-    "Mai",
-    "Juin",
-    "Juillet",
-    "Aout",
-    "Septembre",
-    "Octobre",
-    "Novembre",
-    "Décembre",
-]
+import MONTHS from '../constant/Date';
+import Button from './Button';
 
 export type SeedType = {
     id: number,
@@ -29,21 +16,31 @@ export type SeedType = {
 }
 
 interface ISeed {
-    id?: number,
     seed: SeedType,
-    updateSeed: Function,
     noLink?: boolean,
+    id?: number,
     displayMonth?: boolean,
+    updateSeed: Function,
+    deleteSeed: Function,
 }
 
-const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false, noLink = false }) => {
+const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false, noLink = false, deleteSeed }) => {
     const [showMonths, setShowMonths] = useState(displayMonth)
     return (
         <div className={styles.Seed}>
-            <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
+            {seed.name && (
+                <>
+                    <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
+                    <div className={styles.Delete}>
+                        <Button onClick={() => deleteSeed(seed)}>
+                            x
+                        </Button>
+                    </div>
+                </>
+            )}
             {showMonths && (
                 <div className={styles.Months}>
-                    {MONTHS.map((month, i) => (
+                    {MONTHS.MONTHS.map((month, i) => (
                         <div key={i} onClick={() => updateSeed(seed, i)} className={`${styles.Month} ${seed.growingMonths.includes(i) && styles.Active} `}>
                             {month.slice(0, 3)}.
                         </div>
