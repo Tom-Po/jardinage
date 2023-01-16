@@ -1,41 +1,49 @@
-import { useState } from "react";
-import Button from "./Button";
-import Todo from "./Todo";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Todo, { TodoType } from "./Todo";
 
 const TodoList = () => {
     const [todoContent, setTodoContent] = useState('')
-    const [todos, setTodos] = useState([
-        {
-            text: "Retourner la terre",
-            isCompleted: false
-        },
-        {
-            text: "Aller chercher du fumier",
-            isCompleted: false
-        },
-        {
-            text: "Planter des radis",
-            isCompleted: false
-        }
-    ]);
+    const [todos, setTodos] = useState<TodoType[]>([]);
 
-    const completeTodo = (index: number) => {
-        const newTodos = [...todos];
-        newTodos[index].isCompleted = !newTodos[index].isCompleted;
-        setTodos(newTodos);
+    const getTodos = () => axios.get("http://localhost:3000/todos")
+        .then((data) => setTodos(data.data))
+
+    useEffect(() => {
+        getTodos();
+    }, [])
+
+    const completeTodo = (todo: TodoType) => {
+        let updatedTodo = {
+            ...todo,
+            isCompleted: !todo.isCompleted
+        }
+        axios.put(`http://localhost:3000/todos/${todo.id}`, updatedTodo)
+            .then(() => getTodos())
     };
 
-    const removeTodo = (index: number) => {
-        const newTodos = [...todos];
-        newTodos.splice(index, 1);
-        setTodos(newTodos);
+    const removeTodo = (todo: TodoType) => {
+        axios.delete(`http://localhost:3000/todos/${todo.id}`)
+            .then(() => getTodos())
     };
 
     const addTodo = (e: any) => {
         e.preventDefault();
+        const newTodo = { text: todoContent, isCompleted: false };
         setTodoContent('')
-        setTodos(
-            [{ text: todoContent, isCompleted: false }, ...todos]
+        axios.post(`http://localhost:3000/todos/`, newTodo)
+            .then(() => getTodos())
+    }
+
+    if (!todos.length) {
+        return (
+            <>
+                <div>Aucune tâche à afficher</div>
+                <form onSubmit={addTodo}>
+                    <input type="text" value={todoContent} onSubmit={addTodo} onChange={(e) => setTodoContent(e.target.value)} />
+                    <button onClick={addTodo}>Ajouter</button>
+                </form>
+            </>
         )
     }
 
@@ -48,7 +56,6 @@ const TodoList = () => {
             {todos.sort(t => t.isCompleted ? 1 : -1).map((todo, index) => (
                 <Todo
                     key={index}
-                    index={index}
                     todo={todo}
                     completeTodo={completeTodo}
                     removeTodo={removeTodo}
