@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 svgo.config.js
+*./src/assets/data/vegetables-db.old.json
