@@ -2,10 +2,9 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import Todo, { TodoType } from "./Todo";
 import styles from './TodoList.module.css'
-import Button from "./Button";
+import TodoAddForm from "./TodoAddForm";
 
 const TodoList = () => {
-    const [todoContent, setTodoContent] = useState('')
     const [todos, setTodos] = useState<TodoType[]>([]);
 
     const uncompletedTodos = useMemo(() => todos.filter(t => !t.isCompleted).length, [todos])
@@ -31,22 +30,10 @@ const TodoList = () => {
             .then(() => getTodos())
     };
 
-    const addTodo = (e: any) => {
-        e.preventDefault();
-        if (!todoContent) return;
-        const newTodo = { text: todoContent, isCompleted: false };
-        setTodoContent('')
-        axios.post(`http://localhost:3000/todos/`, newTodo)
-            .then(() => getTodos())
-    }
-
     return (
         <div>
             <h2>Todo's</h2>
-            <form onSubmit={addTodo}>
-                <input type="text" value={todoContent} onSubmit={addTodo} onChange={(e) => setTodoContent(e.target.value)} />
-                <Button onClick={addTodo}>Ajouter</Button>
-            </form>
+            <TodoAddForm onSubmit={getTodos} />
             <div className={styles.List}>
                 {!todos.length
                     ? <div>Aucune tâche à afficher <span className="success-text">ajoute une tâche !</span></div>
