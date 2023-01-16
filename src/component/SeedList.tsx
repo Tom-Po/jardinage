@@ -17,8 +17,6 @@ const SeedList = () => {
 
     const updateSeed = (seed: SeedType, monthIndex: number) => {
         let updatedSeed = { ...seed }
-        console.log(updatedSeed.growingMonths);
-
         if (updatedSeed.growingMonths.includes(monthIndex)) {
             updatedSeed.growingMonths.splice(updatedSeed.growingMonths.indexOf(monthIndex), 1)
         } else {
@@ -35,12 +33,12 @@ const SeedList = () => {
 
     return <>
         <h2>Semis</h2>
-        <SeedAddForm onSubmit={getSeeds} />
         <div className={styles.Seeds}>
             {seeds.map((seed, index) => (
                 <Seed key={index} id={index} updateSeed={updateSeed} seed={seed} />
             ))}
         </div>
+        <SeedAddForm onSubmit={getSeeds} />
     </>
 }
 

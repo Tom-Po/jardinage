@@ -1,0 +1,19 @@
+.NavigationItem {
+    padding: 0 .4rem;
+    margin: 0 .5rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.NavigationItem:hover {
+    transition: all 200ms;
+}
+
+.NavigationItem:not(.active) {
+    opacity: .5;
+}
+
+.NavigationItem:not(.active):hover {
+    opacity: .8;
+}
