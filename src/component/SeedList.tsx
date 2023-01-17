@@ -3,21 +3,22 @@ import { useEffect, useState } from "react"
 import Calendar from "./Calendar";
 import Seed, { SeedType } from "./Seed";
 import styles from './SeedList.module.css';
+import { getSeeds } from '../queries/Seeds';
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { Link } from "react-router-dom";
 
 const SeedList = () => {
-    const [seeds, setSeeds] = useState<SeedType[]>([])
-    const getSeeds = () => axios.get("http://localhost:3000/seeds")
-        .then((data) => {
-            setSeeds(data.data)
-            let currentMonthSeeds = data.data.filter((seed: SeedType) => {
-                return seed.growingMonths.includes(today.getMonth())
-            })
-            setAllCurrent(currentMonthSeeds)
+    const queryClient = useQueryClient();
 
-        })
+    const { data: seeds } = useQuery("seeds", getSeeds)
 
-    const updateSeedApi = (seed: SeedType) => axios.put(`http://localhost:3000/seeds/${seed.id}`, seed)
-        .then(() => getSeeds())
+    const update = useMutation({
+        mutationFn: (updatedSeed: SeedType) =>
+            axios.put(`http://localhost:3000/seeds/${updatedSeed.id}`, updatedSeed),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['seeds'] })
+        },
+    })
 
     const updateSeed = (seed: SeedType, monthIndex: number) => {
         let updatedSeed = { ...seed }
@@ -26,29 +27,26 @@ const SeedList = () => {
         } else {
             updatedSeed.growingMonths.push(monthIndex)
         }
-        updateSeedApi(updatedSeed)
+        update.mutate(updatedSeed)
     }
 
-    const deleteSeed = (seed: SeedType) => axios.delete(`http://localhost:3000/seeds/${seed.id}`)
-        .then(() => getSeeds())
-
-    useEffect(() => {
-        getSeeds()
-    }, [])
-
-    const [allCurrent, setAllCurrent] = useState<SeedType[]>([])
-
-    const today = new Date()
+    const deleteSeed = useMutation({
+        mutationFn: (updatedSeed: SeedType) =>
+            axios.delete(`http://localhost:3000/seeds/${updatedSeed.id}`),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['seeds'] })
+        },
+    })
 
     return <>
         <h2>Semis</h2>
-        {allCurrent.map(current => (
-            <div key={current.id}> current {current.name}</div>
-        ))}
         <div className={styles.Seeds}>
-            {seeds.map((seed, index) => (
-                <Seed key={index} id={index} updateSeed={updateSeed} deleteSeed={deleteSeed} seed={seed} />
-            ))}
+            {seeds && seeds.length
+                ? seeds.map((seed: SeedType, index: number) => (
+                    <Seed key={index} id={index} updateSeed={updateSeed} deleteSeed={(seed: SeedType) => deleteSeed.mutate(seed)
+                    } seed={seed} />
+                ))
+                : <div>No seeds</div>}
         </div>
     </>
 }

@@ -1,9 +1,15 @@
 .NavigationItem {
-    padding: 0 .4rem;
+    padding: .4rem 1rem;
     margin: 0 .5rem;
     cursor: pointer;
     position: relative;
     z-index: 10;
+    transition: all 200ms ease;
+}
+
+.NavigationItem.active {
+    background-color: lightgrey;
+    border-radius: 2px;
 }
 
 .NavigationItem:hover {

@@ -1,23 +1,17 @@
-import axios from 'axios'
 import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 import date, { ExtendedMonthType } from '../constant/Date'
 import styles from './Calendar.module.css'
 import { SeedType } from './Seed'
+import { getSeeds } from '../queries/Seeds';
 
 const Calendar = () => {
-    const { data } = useQuery({
-        queryKey: ["seeds"],
-        queryFn: () =>
-            axios
-                .get("http://localhost:3000/seeds")
-                .then((res) => res.data),
-    });
+    const { data: seeds } = useQuery("seeds", getSeeds)
 
     const sorted: ExtendedMonthType[] = useMemo(() => {
         let newSort = date.EXTENDED_MONTHS.slice(0);
-        if (data) {
-            data.forEach((seed: SeedType) => {
+        if (seeds) {
+            seeds.forEach((seed: SeedType) => {
                 seed.growingMonths.forEach(month => {
                     if (!newSort[month].availableSeeds.includes(seed)) {
                         newSort[month].availableSeeds.push(seed)
@@ -27,22 +21,25 @@ const Calendar = () => {
 
         }
         return newSort
-    }, [data])
+    }, [seeds])
 
     return (
-        <div className={styles.Calendar}>
-            {sorted.map(({ name, daysCount, availableSeeds }) => (
-                <div key={name} className={styles.Month}>
-                    <h3 className={styles.MonthName}>{name}</h3>
-                    {Array(daysCount).fill(null).map((_, i) => (
-                        <div key={`calendar-${name}-day-${i}`} className={styles.Day}>
-                            <div className={styles.DayIndex}>{i}</div>
-                            <div className={styles.DayContent}>{availableSeeds[i] ? availableSeeds[i].name : ""}</div>
+        <>
+            <h2>Calendrier</h2>
+            <div className={styles.Calendar}>
+                {sorted.map(({ name, availableSeeds }) => (
+                    <div key={name} className={styles.Month}>
+                        <h3 className={styles.MonthName}>{name}</h3>
+                        <div className={styles.AvailableSeeds}>
+                            <div>Graines: </div>
+                            {availableSeeds.map(seed => (
+                                <div key={seed.name}>{seed.name}</div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            ))}
-        </div>
+                    </div>
+                ))}
+            </div>
+        </>
     )
 }
 

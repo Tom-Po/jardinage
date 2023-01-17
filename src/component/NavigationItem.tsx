@@ -14,7 +14,7 @@ export const NavigationItem = ({ route }: INavigationItem) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const active = location.pathname === path;
+    const active = location.pathname.match(path);
 
     return (
         <div

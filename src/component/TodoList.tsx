@@ -1,35 +1,34 @@
 import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getTodos } from "../queries/Todos";
 import Todo, { TodoType } from "./Todo";
 import TodoAddForm from "./TodoAddForm";
 import styles from './TodoList.module.css';
 
 const TodoList = () => {
-    const [todos, setTodos] = useState<TodoType[]>([]);
+    const { data: todos = [] } = useQuery<TodoType[]>("todos", getTodos)
+    const queryClient = useQueryClient()
 
-    const uncompletedTodos = useMemo(() => todos.filter(t => !t.isCompleted).length, [todos])
+    const uncompletedTodos = useMemo(() => todos && todos.filter(t => !t.isCompleted).length, [todos])
 
-    const getTodos = () => axios.get("http://localhost:3000/todos")
-        .then((data) => setTodos(data.data))
-
-    useEffect(() => {
-        getTodos();
-    }, [])
-    console.log("unnnnn");
-
-    const completeTodo = (todo: TodoType) => {
-        let updatedTodo = {
-            ...todo,
-            isCompleted: !todo.isCompleted
-        }
-        axios.put(`http://localhost:3000/todos/${todo.id}`, updatedTodo)
-            .then(() => getTodos())
-    };
-
-    const removeTodo = (todo: TodoType) => {
-        axios.delete(`http://localhost:3000/todos/${todo.id}`)
-            .then(() => getTodos())
-    };
+    const deleteTodo = useMutation({
+        mutationFn: (todo: TodoType) =>
+            axios.delete(`http://localhost:3000/todos/${todo.id}`),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['todos'] })
+        },
+    })
+    const setCompletedTodo = useMutation({
+        mutationFn: (todo: TodoType) =>
+            axios.put(`http://localhost:3000/todos/${todo.id}`, {
+                ...todo,
+                isCompleted: !todo.isCompleted
+            }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['todos'] })
+        },
+    })
 
     return (
         <div>
@@ -44,8 +43,8 @@ const TodoList = () => {
                             <Todo
                                 key={index}
                                 todo={todo}
-                                completeTodo={completeTodo}
-                                removeTodo={removeTodo}
+                                completeTodo={(todo) => setCompletedTodo.mutate(todo)}
+                                removeTodo={(todo) => deleteTodo.mutate(todo)}
                             />
                         ))}
                     </>

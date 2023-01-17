@@ -4,31 +4,44 @@ import Calendar from "../component/Calendar";
 import SeedAddForm from "../component/SeedAddForm";
 import SeedList from "../component/SeedList";
 import TodoList from "../component/TodoList";
+import SeedScreen from "../screens/SeedScreen";
 
-export type NamedRoute = RouteProps & { path: string, name: string }
+export type NamedRoute = RouteProps & { path: string, name: string, subRoutes: NamedRoute[] }
 
 export const routes: NamedRoute[] = [
     {
         name: 'Calendar',
         path: '/',
-        element: <Calendar />
+        element: <Calendar />,
+        subRoutes: []
     },
     {
-        name: 'Créer un semi',
-        path: '/seeds',
-        element: <>
-            <SeedList />
-            <SeedAddForm onSubmit={() => { }} />,
-        </>
+        name: 'Semis',
+        path: 'seeds',
+        element: <SeedScreen />,
+        subRoutes: [{
+            name: 'Semis',
+            path: '/seeds',
+            element: <SeedList />,
+            subRoutes: []
+        },
+        {
+            name: 'Créer un semis',
+            path: '/seeds/create',
+            element: <SeedAddForm onSubmit={() => { }} />,
+            subRoutes: []
+        }]
     },
     {
         name: 'A faire',
-        path: '/todos',
-        element: <TodoList />
+        path: 'todos',
+        element: <TodoList />,
+        subRoutes: []
     },
     {
         name: 'Notes',
-        path: '/about',
-        element: <About />
+        path: 'about',
+        element: <About />,
+        subRoutes: []
     }
 ]

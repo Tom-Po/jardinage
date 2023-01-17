@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Seed, { SeedType } from "./Seed";
@@ -19,12 +20,15 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
     const [seed, setSeed] = useState(initialSeed)
 
     const navigate = useNavigate()
+    const queryClient = useQueryClient()
 
-    const resetSeed = () => setSeed({
-        id: 0,
-        name: "",
-        growingMonths: [],
-        type: "Aromatiques"
+    const addSeed = useMutation({
+        mutationFn: (newSeed: SeedType) =>
+            axios.post(`http://localhost:3000/seeds/`, newSeed),
+        onSuccess: () => {
+            navigate('/seeds')
+            queryClient.invalidateQueries({ queryKey: ['seeds'] })
+        },
     })
 
     const setSeedName = (name: string) => {
@@ -47,17 +51,11 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
     const submitSeed = (e: any) => {
         e.preventDefault();
         if (!seed.name) return;
-        const newSeed = { ...seed };
-        axios.post(`http://localhost:3000/seeds/`, newSeed)
-            .then(() => {
-                resetSeed()
-            })
+        addSeed.mutate(seed)
     }
 
     return (
         <form onSubmit={submitSeed}>
-            <Button onClick={() => setSeed({ ...initialSeed })}>rest</Button>
-
             <div>
                 <h4>Nouveau semi</h4>
                 <Seed deleteSeed={() => { }} seed={seed} updateSeed={toggleGrowingMonth} noLink displayMonth />

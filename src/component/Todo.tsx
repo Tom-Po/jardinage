@@ -9,8 +9,8 @@ export type TodoType = {
 
 interface ITodo {
     todo: TodoType,
-    completeTodo: Function,
-    removeTodo: Function,
+    completeTodo: (todo: TodoType) => void,
+    removeTodo: (todo: TodoType) => void,
 }
 
 const Todo: React.FC<ITodo> = ({ todo, completeTodo, removeTodo }) => {
