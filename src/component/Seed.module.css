@@ -10,16 +10,17 @@
     right: 1rem;
     top: 1rem;
     cursor: pointer;
-    transition: all 200ms ease;
 }
 
-.Delete:hover {
+.Delete svg:hover {
     transform: scale(1.2);
 }
 
 .Delete svg {
     width: 20px;
     height: 20px;
+    transition: all 200ms ease;
+    margin-left: .5rem;
 }
 
 .Months {

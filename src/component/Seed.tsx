@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ReactComponent as Rustica } from '../assets/RusticaNoir.svg';
 import { ReactComponent as TrashBin } from '../assets/TrashBin.svg';
+import { ReactComponent as Edit } from '../assets/Edit.svg';
 import MONTHS from '../constant/Date';
 import MyModal from '../screens/ShowModal';
 import Button from './Button';
@@ -45,9 +46,8 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
     );
 
     const mainModal = (
-        <MyModal closeModal={closeModal} handleCloseButton={handleCloseButton}>
-            <SeedAddForm init={seed} onSubmit={(e) => {
-                console.log(e);
+        <MyModal closeModal={closeModal} handleCloseButton={handleCloseButton} noFooter>
+            <SeedAddForm init={seed} onSubmit={(e: any) => {
                 closeModal()
             }} />
         </MyModal>
@@ -59,8 +59,8 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
                 <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
                 <p className={`${styles.Description} ${!seed.description && styles.disabled}`}>{seed.description ?? "Pas de description"}</p>
                 <div className={styles.Delete}>
+                    <Edit onClick={() => setShowModal(true)} />
                     <TrashBin onClick={() => deleteSeed(seed)} />
-                    <TrashBin onClick={() => setShowModal(true)} />
                 </div>
             </>
             {showModal && mainModal}

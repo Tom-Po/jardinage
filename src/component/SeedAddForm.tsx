@@ -69,7 +69,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         addSeed.mutate(seed)
     }
     return (
-        <form onSubmit={submitSeed}>
+        <form onSubmit={submitSeed} className={styles.Form}>
             <div>
                 <h4>Nouveau semi</h4>
             </div>
@@ -91,7 +91,9 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
                     ))}
                 </div>
             </div>
-            <Button onClick={submitSeed}>Ajouter</Button>
+            <div className={styles.Actions}>
+                <Button onClick={submitSeed}>Ajouter</Button>
+            </div>
         </form>
     )
 }

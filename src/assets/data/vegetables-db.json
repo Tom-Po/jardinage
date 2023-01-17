@@ -1,20 +1,6 @@
 {
   "seeds": [
     {
-      "id": 1,
-      "growingMonths": [
-        3,
-        2,
-        8,
-        9,
-        10,
-        0
-      ],
-      "name": "Carotte",
-      "description": "rouge",
-      "type": "Aromatiques"
-    },
-    {
       "id": 3,
       "growingMonths": [
         4,
@@ -39,7 +25,7 @@
         5
       ],
       "name": "Betterave",
-      "description": "oui",
+      "description": "En fait si\n",
       "type": "Aromatiques"
     },
     {

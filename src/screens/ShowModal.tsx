@@ -2,9 +2,13 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from './Modal.module.css'
 
-type IModal = React.PropsWithChildren & { closeModal: React.MouseEventHandler<HTMLDivElement>, handleCloseButton: React.ReactNode }
+type IModal = React.PropsWithChildren & {
+    closeModal: any,
+    handleCloseButton: React.ReactNode,
+    noFooter?: boolean
+}
 
-const MyModal: React.FC<IModal> = ({ closeModal, children, handleCloseButton }) => {
+const MyModal: React.FC<IModal> = ({ closeModal, children, handleCloseButton, noFooter = false }) => {
     useEffect(() => {
         const listener = (e: KeyboardEvent) => {
             if (e.key === "Escape") closeModal();
@@ -24,7 +28,7 @@ const MyModal: React.FC<IModal> = ({ closeModal, children, handleCloseButton }) 
             <div className={styles.Backdrop} onClick={closeModal}></div>
             <div className={styles.Modal}>
                 {children}
-                {handleCloseButton}
+                {!noFooter && handleCloseButton}
             </div>
         </div>,
         document.querySelector("#modal-portal")!
