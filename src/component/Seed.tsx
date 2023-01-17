@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { ReactComponent as Rustica } from '../assets/RusticaNoir.svg';
 import { ReactComponent as TrashBin } from '../assets/TrashBin.svg';
 import MONTHS from '../constant/Date';
+import MyModal from '../screens/ShowModal';
+import Button from './Button';
 import styles from './Seed.module.css';
+import SeedAddForm from './SeedAddForm';
 
 export enum SEED_TYPE {
     TOMATE = 'Tomate',
@@ -31,6 +34,24 @@ interface ISeed {
 
 const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false, noLink = false, deleteSeed }) => {
     const [showMonths, setShowMonths] = useState(displayMonth)
+    const [showModal, setShowModal] = useState(false);
+
+    const closeModal = () => setShowModal(false);
+
+    const handleCloseButton = (
+        <Button onClick={closeModal}>
+            Mettre à jour
+        </Button>
+    );
+
+    const mainModal = (
+        <MyModal closeModal={closeModal} handleCloseButton={handleCloseButton}>
+            <SeedAddForm init={seed} onSubmit={(e) => {
+                console.log(e);
+                closeModal()
+            }} />
+        </MyModal>
+    );
 
     return (
         <div className={styles.Seed}>
@@ -39,8 +60,11 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
                 <p className={`${styles.Description} ${!seed.description && styles.disabled}`}>{seed.description ?? "Pas de description"}</p>
                 <div className={styles.Delete}>
                     <TrashBin onClick={() => deleteSeed(seed)} />
+                    <TrashBin onClick={() => setShowModal(true)} />
                 </div>
             </>
+            {showModal && mainModal}
+
             {showMonths && (
                 <div className={styles.Months}>
                     {MONTHS.MONTHS.map((month, i) => (

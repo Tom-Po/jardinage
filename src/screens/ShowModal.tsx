@@ -6,9 +6,16 @@ type IModal = React.PropsWithChildren & { closeModal: React.MouseEventHandler<HT
 
 const MyModal: React.FC<IModal> = ({ closeModal, children, handleCloseButton }) => {
     useEffect(() => {
+        const listener = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeModal();
+        }
+
         document.body.style.overflowY = "hidden";
+        document.addEventListener('keydown', listener)
+
         return () => {
             document.body.style.overflowY = "scroll";
+            document.removeEventListener('keydown', listener)
         };
     }, []);
 

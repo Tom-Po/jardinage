@@ -9,7 +9,7 @@ import styles from './SeedAddForm.module.css';
 
 interface ISeedAddForm {
     onSubmit: Function,
-    init?: Omit<SeedType, "id">
+    init?: Omit<SeedType, "id"> & { id?: number }
 }
 
 const initialSeed: Omit<SeedType, "id"> = {
@@ -19,18 +19,24 @@ const initialSeed: Omit<SeedType, "id"> = {
     type: SEED_TYPE.AROMATIQUE
 }
 
-const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = initialSeed }) => {
+const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed, id: 0 } }) => {
     const [seed, setSeed] = useState(init)
 
     const navigate = useNavigate()
     const queryClient = useQueryClient()
 
     const addSeed = useMutation({
-        mutationFn: (newSeed: Omit<SeedType, "id">) =>
-            axios.post(`http://localhost:3000/seeds/`, newSeed),
+        mutationFn: (newSeed: SeedType) => {
+            if (newSeed.id) {
+                return axios.put(`http://localhost:3000/seeds/${newSeed.id}`, newSeed)
+            } else {
+                return axios.post(`http://localhost:3000/seeds/`, newSeed)
+            }
+        },
         onSuccess: () => {
             navigate('/seeds')
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
+            onSubmit()
         },
     })
 

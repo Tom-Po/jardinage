@@ -11,35 +11,24 @@
         0
       ],
       "name": "Carotte",
-      "description": "Orange",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 2,
-      "growingMonths": [
-        3,
-        10,
-        1,
-        4,
-        6,
-        11
-      ],
-      "name": "Radis",
-      "description": "rose",
+      "description": "rouge",
       "type": "Aromatiques"
     },
     {
       "id": 3,
       "growingMonths": [
         4,
-        5,
-        6,
-        7,
         0,
-        1
+        1,
+        2,
+        3,
+        8,
+        9,
+        10,
+        11
       ],
       "name": "Coriandre",
-      "description": "Année précédente: manque d'eau",
+      "description": "En fait ça va",
       "type": "Aromatiques"
     },
     {
@@ -73,6 +62,31 @@
       "name": "dzzad",
       "description": "azdza",
       "type": "Aromatiques"
+    },
+    {
+      "growingMonths": [
+        3,
+        2,
+        8,
+        9,
+        10,
+        0
+      ],
+      "name": "Carotte",
+      "description": "Orange",
+      "type": "Aromatiques",
+      "id": 8
+    },
+    {
+      "growingMonths": [
+        4,
+        5,
+        7
+      ],
+      "name": "Avocat",
+      "description": "Relou niveau flotte, 20l par jour",
+      "type": "Aromatiques",
+      "id": 9
     }
   ],
   "todos": [
