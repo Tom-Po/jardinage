@@ -1,0 +1,23 @@
+.Wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+}
+
+.Modal {
+    position: absolute;
+    inset: 5rem;
+    display: flex;
+    background-color: white;
+
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Backdrop {
+    background-color: rgba(0, 0, 0, .5);
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+}

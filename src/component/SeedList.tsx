@@ -1,11 +1,9 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import Calendar from "./Calendar";
+import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getSeeds } from '../queries/Seeds';
+import Modal from "../screens/Modal";
 import Seed, { SeedType } from "./Seed";
 import styles from './SeedList.module.css';
-import { getSeeds } from '../queries/Seeds';
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { Link } from "react-router-dom";
 
 const SeedList = () => {
     const queryClient = useQueryClient();
@@ -40,6 +38,7 @@ const SeedList = () => {
 
     return <>
         <h2>Semis</h2>
+        <Modal />
         <div className={styles.Seeds}>
             {seeds && seeds.length
                 ? seeds.map((seed: SeedType, index: number) => (

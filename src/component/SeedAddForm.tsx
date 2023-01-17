@@ -8,29 +8,28 @@ import { SeedType, SEED_TYPE } from "./Seed";
 import styles from './SeedAddForm.module.css';
 
 interface ISeedAddForm {
-    onSubmit: Function
+    onSubmit: Function,
+    init?: Omit<SeedType, "id">
 }
 
-const initialSeed: SeedType = {
-    id: 0,
+const initialSeed: Omit<SeedType, "id"> = {
     growingMonths: [],
     name: '',
     description: '',
     type: SEED_TYPE.AROMATIQUE
 }
 
-const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
-    const [seed, setSeed] = useState(initialSeed)
+const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = initialSeed }) => {
+    const [seed, setSeed] = useState(init)
 
     const navigate = useNavigate()
     const queryClient = useQueryClient()
 
     const addSeed = useMutation({
-        mutationFn: (newSeed: SeedType) =>
+        mutationFn: (newSeed: Omit<SeedType, "id">) =>
             axios.post(`http://localhost:3000/seeds/`, newSeed),
         onSuccess: () => {
             navigate('/seeds')
-            setSeed(initialSeed)
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
         },
     })
@@ -48,7 +47,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
         })
     }
 
-    const toggleGrowingMonth = (_: SeedType, monthIndex: number) => {
+    const toggleGrowingMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
         const updatedSeed = { ...seed }
         if (updatedSeed.growingMonths.includes(monthIndex)) {
             updatedSeed.growingMonths.splice(updatedSeed.growingMonths.indexOf(monthIndex), 1)
@@ -70,7 +69,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
             </div>
             <div>
                 <div>Nom de la graine</div>
-                <input type="text" value={seed.name} onSubmit={submitSeed} onChange={(e) => setSeedName(e.target.value)} />
+                <input type="text" name="seed" value={seed.name} onSubmit={submitSeed} onChange={(e) => setSeedName(e.target.value)} />
             </div>
             <div>
                 <div>Notes:</div>

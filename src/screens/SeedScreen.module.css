@@ -9,7 +9,10 @@
 
 .NavigationLink {
     flex-basis: 50%;
-    background-color: lightblue;
     text-align: center;
     padding: .5rem 1rem;
+}
+
+.active {
+    background-color: lightgray;
 }

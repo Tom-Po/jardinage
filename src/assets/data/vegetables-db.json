@@ -18,15 +18,9 @@
       "id": 2,
       "growingMonths": [
         3,
-        2,
-        8,
-        9,
         10,
-        0,
         1,
-        5,
         4,
-        7,
         6,
         11
       ],
@@ -46,6 +40,38 @@
       ],
       "name": "Coriandre",
       "description": "Année précédente: manque d'eau",
+      "type": "Aromatiques"
+    },
+    {
+      "id": 4,
+      "growingMonths": [
+        0,
+        1,
+        5
+      ],
+      "name": "Betterave",
+      "description": "oui",
+      "type": "Aromatiques"
+    },
+    {
+      "id": 5,
+      "growingMonths": [
+        0,
+        1,
+        5
+      ],
+      "name": "Cumin",
+      "description": "Graines ou poudre",
+      "type": "Aromatiques"
+    },
+    {
+      "id": 6,
+      "growingMonths": [
+        2,
+        5
+      ],
+      "name": "dzzad",
+      "description": "azdza",
       "type": "Aromatiques"
     }
   ],
