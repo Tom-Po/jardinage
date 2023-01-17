@@ -18,28 +18,6 @@
       "type": "Aromatiques"
     },
     {
-      "id": 4,
-      "growingMonths": [
-        0,
-        1,
-        5
-      ],
-      "name": "Betterave",
-      "description": "En fait si\n",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 5,
-      "growingMonths": [
-        0,
-        1,
-        5
-      ],
-      "name": "Cumin",
-      "description": "Graines ou poudre",
-      "type": "Aromatiques"
-    },
-    {
       "growingMonths": [
         3,
         2,
@@ -75,6 +53,16 @@
       "description": "Récolte et conservation du citron. récolter conserver citron. Il existe de nombreuses variétés de citronniers et autant de périodes de récoltes. ",
       "type": "Aromatiques",
       "id": 10
+    },
+    {
+      "growingMonths": [
+        1,
+        2
+      ],
+      "name": "Yuzu",
+      "description": "",
+      "type": "Aromatiques",
+      "id": 11
     }
   ],
   "todos": [
@@ -87,7 +75,7 @@
     {
       "id": 3,
       "text": "Drageon de chataigner en foret Septembre",
-      "isCompleted": true,
+      "isCompleted": false,
       "month": 0
     },
     {
@@ -99,7 +87,7 @@
     {
       "id": 5,
       "text": "Troc de plante, Facebook",
-      "isCompleted": false,
+      "isCompleted": true,
       "month": 0
     }
   ],

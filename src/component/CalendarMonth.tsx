@@ -16,8 +16,7 @@ const CalendarMonth: React.FC<ICalendarMonth> = ({ name, availableSeeds }) => {
 
     const currentMonthTodos = todos.filter(todo => {
         return todo.month === currentMonthIndex
-    }).sort((a, b) => a.text > b.text ? 1 : -1)
-    console.log(currentMonthTodos);
+    }).sort((a, b) => a.isCompleted > b.isCompleted || a.text > b.text ? 1 : -1)
 
     return (
         <div key={name} className={styles.Month}>

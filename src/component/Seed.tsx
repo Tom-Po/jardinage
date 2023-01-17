@@ -45,7 +45,7 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
         </Button>
     );
 
-    const mainModal = (
+    const editSeedModal = (
         <MyModal closeModal={closeModal} handleCloseButton={handleCloseButton} noFooter>
             <SeedAddForm init={seed} onSubmit={(e: any) => {
                 closeModal()
@@ -63,7 +63,7 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
                     <TrashBin onClick={() => deleteSeed(seed)} />
                 </div>
             </>
-            {showModal && mainModal}
+            {showModal && editSeedModal}
 
             {showMonths && (
                 <div className={styles.Months}>

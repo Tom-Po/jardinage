@@ -29,7 +29,7 @@ const Calendar = () => {
             <h2>Calendrier</h2>
             <div className={styles.Calendar}>
                 {sorted.map(({ name, availableSeeds }) => (
-                    <CalendarMonth name={name} availableSeeds={availableSeeds} />
+                    <CalendarMonth key={name} name={name} availableSeeds={availableSeeds} />
                 ))}
             </div>
         </>

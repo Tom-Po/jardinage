@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { getSeeds } from '../queries/Seeds';
-import Modal from "../screens/Modal";
 import Seed, { SeedType } from "./Seed";
 import styles from './SeedList.module.css';
 
 const SeedList = () => {
-    const queryClient = useQueryClient();
+    const queryClient = useQueryClient()
+    const navigate = useNavigate()
 
     const { data: seeds } = useQuery("seeds", getSeeds)
 
@@ -32,6 +33,7 @@ const SeedList = () => {
         mutationFn: (updatedSeed: SeedType) =>
             axios.delete(`http://localhost:3000/seeds/${updatedSeed.id}`),
         onSuccess: () => {
+            navigate('/')
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
         },
     })
