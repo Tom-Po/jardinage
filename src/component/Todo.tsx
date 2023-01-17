@@ -5,6 +5,7 @@ export type TodoType = {
     id: number,
     text: string,
     isCompleted: boolean,
+    month: number
 }
 
 interface ITodo {
@@ -19,7 +20,7 @@ const Todo: React.FC<ITodo> = ({ todo, completeTodo, removeTodo }) => {
             className={`${styles.Todo} ${todo.isCompleted ? styles.Complete : ''}`}
             style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
         >
-            {todo.text}
+            {`${todo.text} - ${todo.month}`}
             <div>
                 <Button onClick={() => completeTodo(todo)}>
                     {todo.isCompleted

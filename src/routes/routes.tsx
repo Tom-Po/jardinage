@@ -10,7 +10,7 @@ export type NamedRoute = RouteProps & { path: string, name: string, subRoutes: N
 
 export const routes: NamedRoute[] = [
     {
-        name: 'Calendar',
+        name: 'Calendrier',
         path: '/',
         element: <Calendar />,
         subRoutes: []

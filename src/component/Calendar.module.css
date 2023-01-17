@@ -7,28 +7,6 @@
     margin-bottom: 4rem;
 }
 
-.Month {
-    min-height: 40vh;
-    flex: 0 0 300px;
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    margin: .4rem 0;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.MonthName {
-    text-align: center;
-    color: var(--green);
-    font-weight: 600;
-    padding-top: 1rem;
-    padding-left: 1rem;
-}
-
-.AvailableSeeds {
-    padding: 1rem;
-}
-
 .Day {
     flex: 0 0 30px;
     display: flex;

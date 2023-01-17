@@ -38,7 +38,6 @@ const SeedList = () => {
 
     return <>
         <h2>Semis</h2>
-        <Modal />
         <div className={styles.Seeds}>
             {seeds && seeds.length
                 ? seeds.map((seed: SeedType, index: number) => (

@@ -4,8 +4,10 @@ import date, { ExtendedMonthType } from '../constant/Date'
 import styles from './Calendar.module.css'
 import { SeedType } from './Seed'
 import { getSeeds } from '../queries/Seeds';
+import CalendarMonth from './CalendarMonth'
 
 const Calendar = () => {
+    // TODO remove this to make a month handler component and local fetch
     const { data: seeds } = useQuery("seeds", getSeeds)
 
     const sorted: ExtendedMonthType[] = useMemo(() => {
@@ -18,7 +20,6 @@ const Calendar = () => {
                     }
                 })
             })
-
         }
         return newSort
     }, [seeds])
@@ -28,15 +29,7 @@ const Calendar = () => {
             <h2>Calendrier</h2>
             <div className={styles.Calendar}>
                 {sorted.map(({ name, availableSeeds }) => (
-                    <div key={name} className={styles.Month}>
-                        <h3 className={styles.MonthName}>{name}</h3>
-                        <div className={styles.AvailableSeeds}>
-                            <div>Graines: </div>
-                            {availableSeeds.map(seed => (
-                                <div key={seed.name}>{seed.name}</div>
-                            ))}
-                        </div>
-                    </div>
+                    <CalendarMonth name={name} availableSeeds={availableSeeds} />
                 ))}
             </div>
         </>

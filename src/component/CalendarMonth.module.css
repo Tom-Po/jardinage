@@ -1,0 +1,34 @@
+.Month {
+    min-height: 40vh;
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: .4rem 0;
+    padding: 0 1rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.AvailableSeeds {
+    margin-bottom: 1rem;
+}
+
+
+.MonthName {
+    text-align: center;
+    color: var(--green);
+    font-weight: 600;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.Seed {
+    display: flex;
+    align-items: center;
+}
+
+.Seed svg {
+    width: 20px;
+    margin-right: .5rem;
+    padding: .25rem;
+}
