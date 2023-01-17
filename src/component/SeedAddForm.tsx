@@ -13,6 +13,7 @@ const initialSeed: SeedType = {
     id: 0,
     growingMonths: [],
     name: '',
+    description: '',
     type: 'Aromatiques'
 }
 
@@ -37,6 +38,12 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
             name
         })
     }
+    const setSeedDescription = (description: string) => {
+        setSeed({
+            ...seed,
+            description
+        })
+    }
 
     const toggleGrowingMonth = (_: SeedType, monthIndex: number) => {
         const updatedSeed = { ...seed }
@@ -59,10 +66,16 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
                 <h4>Nouveau semi</h4>
                 <Seed deleteSeed={() => { }} seed={seed} updateSeed={toggleGrowingMonth} noLink displayMonth />
             </div>
-            <input type="text" value={seed.name} onSubmit={submitSeed} onChange={(e) => setSeedName(e.target.value)} />
+            <div>
+                <div>Nom de la graine</div>
+                <input type="text" value={seed.name} onSubmit={submitSeed} onChange={(e) => setSeedName(e.target.value)} />
+            </div>
+            <div>
+                <div>Notes:</div>
+                <textarea name="description" id="description" value={seed.description} onChange={(e) => setSeedDescription(e.target.value)}></textarea>
+            </div>
             <Button onClick={submitSeed}>Ajouter</Button>
         </form>
-
     )
 }
 

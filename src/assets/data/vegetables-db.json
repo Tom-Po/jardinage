@@ -45,6 +45,18 @@
       "growingMonths": [],
       "name": "Goyave",
       "type": "Aromatiques"
+    },
+    {
+      "id": 7,
+      "growingMonths": [
+        2,
+        3,
+        1,
+        5
+      ],
+      "name": "Verveine",
+      "description": "C'est bon en tisane",
+      "type": "Aromatiques"
     }
   ],
   "todos": [

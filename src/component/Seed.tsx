@@ -1,18 +1,13 @@
-// Seed 
-
-// Peut avoir plusieurs mois d'associés avec un vide entre deux 
-// tomate choux courge aromatiques (plantes potagères  aka tout le reste)
-
 import { useState } from 'react';
-import MONTHS from '../constant/Date';
-import Button from './Button';
-import styles from './Seed.module.css';
-import { ReactComponent as TrashBin } from '../assets/TrashBin.svg';
 import { ReactComponent as Rustica } from '../assets/RusticaNoir.svg';
+import { ReactComponent as TrashBin } from '../assets/TrashBin.svg';
+import MONTHS from '../constant/Date';
+import styles from './Seed.module.css';
 
 export type SeedType = {
     id: number,
     name: string,
+    description: string,
     type: 'Tomate' | 'Choux' | 'Courge' | 'Aromatiques' | 'Plantes potagères',
     growingMonths: number[]
 }
@@ -30,14 +25,13 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
     const [showMonths, setShowMonths] = useState(displayMonth)
     return (
         <div className={styles.Seed}>
-            {seed.name && (
-                <>
-                    <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
-                    <div className={styles.Delete}>
-                        <TrashBin onClick={() => deleteSeed(seed)} />
-                    </div>
-                </>
-            )}
+            <>
+                <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
+                <p>{seed.description ?? "Pas de description"}</p>
+                <div className={styles.Delete}>
+                    <TrashBin onClick={() => deleteSeed(seed)} />
+                </div>
+            </>
             {showMonths && (
                 <div className={styles.Months}>
                     {MONTHS.MONTHS.map((month, i) => (
