@@ -74,14 +74,16 @@ select {
 }
 
 :root {
-  --green: #3DD57E;
+  --green: ##82A850;
   --orange: #FFA300;
   --orange-light: #ffcb72;
+  --dark: #222222;
 
   --accent-color: var(--orange);
   --secondary-accent-color: var(--green);
 
-  --success-text-color: var(--green)
+  --success-text-color: var(--green);
+  --base-font-color: var(--dark);
 }
 
 body {

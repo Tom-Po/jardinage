@@ -7,10 +7,14 @@
 
 .Delete {
     position: absolute;
-    right: 0;
-    top: 0;
-    padding: .25rem;
+    right: 1rem;
+    top: 1rem;
     cursor: pointer;
+    transition: all 200ms ease;
+}
+
+.Delete:hover {
+    transform: scale(1.2);
 }
 
 .Delete svg {
@@ -56,4 +60,12 @@
 
 .ExtLink:hover svg {
     fill: var(--green);
+}
+
+.Description {
+    margin-bottom: 2rem;
+}
+
+.disabled {
+    color: lightgray
 }

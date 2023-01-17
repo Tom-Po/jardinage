@@ -2,8 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
+import date from '../constant/Date';
 import Button from "./Button";
-import Seed, { SeedType } from "./Seed";
+import { SeedType, SEED_TYPE } from "./Seed";
+import styles from './SeedAddForm.module.css';
 
 interface ISeedAddForm {
     onSubmit: Function
@@ -14,7 +16,7 @@ const initialSeed: SeedType = {
     growingMonths: [],
     name: '',
     description: '',
-    type: 'Aromatiques'
+    type: SEED_TYPE.AROMATIQUE
 }
 
 const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
@@ -28,6 +30,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
             axios.post(`http://localhost:3000/seeds/`, newSeed),
         onSuccess: () => {
             navigate('/seeds')
+            setSeed(initialSeed)
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
         },
     })
@@ -64,7 +67,6 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
         <form onSubmit={submitSeed}>
             <div>
                 <h4>Nouveau semi</h4>
-                <Seed deleteSeed={() => { }} seed={seed} updateSeed={toggleGrowingMonth} noLink displayMonth />
             </div>
             <div>
                 <div>Nom de la graine</div>
@@ -73,6 +75,16 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
             <div>
                 <div>Notes:</div>
                 <textarea name="description" id="description" value={seed.description} onChange={(e) => setSeedDescription(e.target.value)}></textarea>
+            </div>
+            <div>
+                <div>Mois de pousse</div>
+                <div className={styles.Months}>
+                    {date.MONTHS.map((month, i) => (
+                        <div key={i} onClick={() => toggleGrowingMonth(seed, i)} className={`${styles.Month} ${seed.growingMonths.includes(i) && styles.Active} `}>
+                            {month.slice(0, 3)}.
+                        </div>
+                    ))}
+                </div>
             </div>
             <Button onClick={submitSeed}>Ajouter</Button>
         </form>

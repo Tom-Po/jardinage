@@ -1,0 +1,26 @@
+.Months {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 300px;
+    gap: .25rem;
+    margin-bottom: 1rem;
+}
+
+.Month {
+    padding: 1rem;
+    background-color: aliceblue;
+    flex-basis: calc(20% - 2rem);
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.Month:hover {
+    background-color: var(--orange-light);
+}
+
+.Month.Active {
+    background-color: var(--orange);
+    color: white;
+}

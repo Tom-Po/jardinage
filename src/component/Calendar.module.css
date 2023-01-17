@@ -1,7 +1,7 @@
 .Calendar {
     display: flex;
     gap: 1rem;
-    padding: 0 1rem;
+    padding: 0 .25rem;
     overflow-x: scroll;
     max-height: 70vh;
     margin-bottom: 4rem;

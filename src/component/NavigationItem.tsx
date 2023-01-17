@@ -1,5 +1,5 @@
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NamedRoute } from "../routes/routes";
 import styles from './NavigationItem.module.css';
 
@@ -17,10 +17,11 @@ export const NavigationItem = ({ route }: INavigationItem) => {
     const active = location.pathname.match(path);
 
     return (
-        <div
+        <Link
             className={`${styles.NavigationItem} ${active && styles.active}`}
-            onClick={() => navigate(path)}
+            to={path}
         >
             {name}
-        </div>)
+        </Link>
+    )
 }

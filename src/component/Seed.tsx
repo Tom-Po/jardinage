@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ReactComponent as Rustica } from '../assets/RusticaNoir.svg';
 import { ReactComponent as TrashBin } from '../assets/TrashBin.svg';
 import MONTHS from '../constant/Date';
 import styles from './Seed.module.css';
 
+export enum SEED_TYPE {
+    TOMATE = 'Tomate',
+    CHOUX = 'Choux',
+    COURGE = 'Courge',
+    AROMATIQUE = 'Aromatiques',
+    POTAGERE = 'Plantes potagères',
+}
+
 export type SeedType = {
     id: number,
     name: string,
     description: string,
-    type: 'Tomate' | 'Choux' | 'Courge' | 'Aromatiques' | 'Plantes potagères',
+    type: SEED_TYPE,
     growingMonths: number[]
 }
 
@@ -23,11 +31,12 @@ interface ISeed {
 
 const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false, noLink = false, deleteSeed }) => {
     const [showMonths, setShowMonths] = useState(displayMonth)
+
     return (
         <div className={styles.Seed}>
             <>
                 <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
-                <p>{seed.description ?? "Pas de description"}</p>
+                <p className={`${styles.Description} ${!seed.description && styles.disabled}`}>{seed.description ?? "Pas de description"}</p>
                 <div className={styles.Delete}>
                     <TrashBin onClick={() => deleteSeed(seed)} />
                 </div>

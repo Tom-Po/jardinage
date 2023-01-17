@@ -3,59 +3,49 @@
     {
       "id": 1,
       "growingMonths": [
-        0,
-        1
+        3,
+        2,
+        8,
+        9,
+        10,
+        0
       ],
-      "name": "Radis",
+      "name": "Carotte",
+      "description": "Orange",
       "type": "Aromatiques"
     },
     {
       "id": 2,
-      "name": "Butternut",
       "growingMonths": [
-        5,
-        6,
-        7,
-        9,
+        3,
+        2,
         8,
+        9,
         10,
+        0,
+        1,
+        5,
+        4,
+        7,
+        6,
         11
       ],
+      "name": "Radis",
+      "description": "rose",
       "type": "Aromatiques"
     },
     {
       "id": 3,
       "growingMonths": [
-        0,
-        1,
+        4,
+        5,
         6,
-        5
+        7,
+        0,
+        1
       ],
-      "name": "Graine",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 5,
-      "growingMonths": [],
-      "name": "Potiron",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 6,
-      "growingMonths": [],
-      "name": "Goyave",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 7,
-      "growingMonths": [
-        2,
-        3,
-        1,
-        5
-      ],
-      "name": "Verveine",
-      "description": "C'est bon en tisane",
+      "name": "Coriandre",
+      "description": "Année précédente: manque d'eau",
       "type": "Aromatiques"
     }
   ],
