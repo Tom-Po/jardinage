@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import Todo, { TodoType } from "./Todo";
-import styles from './TodoList.module.css'
 import TodoAddForm from "./TodoAddForm";
+import styles from './TodoList.module.css';
 
 const TodoList = () => {
     const [todos, setTodos] = useState<TodoType[]>([]);
@@ -15,6 +15,7 @@ const TodoList = () => {
     useEffect(() => {
         getTodos();
     }, [])
+    console.log("unnnnn");
 
     const completeTodo = (todo: TodoType) => {
         let updatedTodo = {

@@ -22,30 +22,6 @@
         11
       ],
       "type": "Aromatiques"
-    },
-    {
-      "id": 3,
-      "growingMonths": [
-        0,
-        1,
-        6,
-        5
-      ],
-      "name": "Graine",
-      "type": "Aromatiques"
-    },
-    {
-      "id": 4,
-      "growingMonths": [
-        4,
-        2,
-        3,
-        8,
-        9,
-        10
-      ],
-      "name": "Carotte",
-      "type": "Aromatiques"
     }
   ],
   "todos": [
