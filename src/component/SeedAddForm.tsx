@@ -53,7 +53,6 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit }) => {
         if (!seed.name) return;
         addSeed.mutate(seed)
     }
-
     return (
         <form onSubmit={submitSeed}>
             <div>

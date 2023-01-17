@@ -35,21 +35,15 @@
       "type": "Aromatiques"
     },
     {
-      "id": 4,
-      "growingMonths": [
-        4,
-        5,
-        6,
-        1,
-        2
-      ],
-      "name": "Navet",
-      "type": "Aromatiques"
-    },
-    {
       "id": 5,
       "growingMonths": [],
       "name": "Potiron",
+      "type": "Aromatiques"
+    },
+    {
+      "id": 6,
+      "growingMonths": [],
+      "name": "Goyave",
       "type": "Aromatiques"
     }
   ],

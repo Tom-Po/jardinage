@@ -9,6 +9,13 @@
     position: absolute;
     right: 0;
     top: 0;
+    padding: .25rem;
+    cursor: pointer;
+}
+
+.Delete svg {
+    width: 20px;
+    height: 20px;
 }
 
 .Months {
