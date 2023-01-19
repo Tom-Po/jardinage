@@ -8,6 +8,7 @@ import IconList from './component/IconList';
 import "./index.css";
 import Header from './layout/Header';
 import { AppRouter } from './routes/Router';
+axios.defaults.withCredentials = false;
 
 const queryClient = new QueryClient()
 
