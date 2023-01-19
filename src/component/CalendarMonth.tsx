@@ -12,10 +12,8 @@ interface ICalendarMonth {
 }
 const CalendarMonth: React.FC<ICalendarMonth> = ({ name, availableSeeds }) => {
     const { data: todos = [] } = useQuery<TodoType[]>("todos", getTodos)
-    const currentMonthIndex = date.MONTHS.findIndex(month => month === name)
-
     const currentMonthTodos = todos.filter(todo => {
-        return todo.month === currentMonthIndex
+        return todo.month === date.MONTHS.findIndex(month => month === name)
     }).sort((a, b) => a.isCompleted > b.isCompleted || a.text > b.text ? 1 : -1)
 
     return (

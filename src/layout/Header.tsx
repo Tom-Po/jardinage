@@ -11,6 +11,7 @@ const Header = () => {
                 <Logo />
                 <div className={styles.Brand}>
                     <div><span>Organik</span></div>
+                    {/* <div><span>Keenagro</span></div> */}
                 </div>
             </div>
             <Navigation />

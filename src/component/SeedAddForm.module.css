@@ -30,6 +30,11 @@
     color: white;
 }
 
+.Display {
+    margin-bottom: 1rem;
+    max-width: 300px;
+}
+
 .Actions {
     display: flex;
     justify-content: flex-end;

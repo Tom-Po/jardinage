@@ -33,7 +33,6 @@ const SeedList = () => {
         mutationFn: (updatedSeed: SeedType) =>
             axios.delete(`http://localhost:3000/seeds/${updatedSeed.id}`),
         onSuccess: () => {
-            navigate('/')
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
         },
     })

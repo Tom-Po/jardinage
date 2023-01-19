@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { ReactComponent as Edit } from '../assets/Edit.svg';
 import { ReactComponent as Rustica } from '../assets/RusticaNoir.svg';
 import { ReactComponent as TrashBin } from '../assets/TrashBin.svg';
-import { ReactComponent as Edit } from '../assets/Edit.svg';
 import MONTHS from '../constant/Date';
 import MyModal from '../screens/ShowModal';
 import Button from './Button';
@@ -21,7 +21,9 @@ export type SeedType = {
     name: string,
     description: string,
     type: SEED_TYPE,
-    growingMonths: number[]
+    growingMonths: number[],
+    image?: string,
+    images?: string[]
 }
 
 interface ISeed {
@@ -55,16 +57,13 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
 
     return (
         <div className={styles.Seed}>
-            <>
-                <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
-                <p className={`${styles.Description} ${!seed.description && styles.disabled}`}>{seed.description ?? "Pas de description"}</p>
-                <div className={styles.Delete}>
-                    <Edit onClick={() => setShowModal(true)} />
-                    <TrashBin onClick={() => deleteSeed(seed)} />
-                </div>
-            </>
+            <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
+            <p className={`${styles.Description} ${!seed.description && styles.disabled}`}>{seed.description ?? "Pas de description"}</p>
+            <div className={styles.Delete}>
+                <Edit onClick={() => setShowModal(true)} />
+                <TrashBin onClick={() => deleteSeed(seed)} />
+            </div>
             {showModal && editSeedModal}
-
             {showMonths && (
                 <div className={styles.Months}>
                     {MONTHS.MONTHS.map((month, i) => (
@@ -72,6 +71,11 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
                             {month.slice(0, 3)}.
                         </div>
                     ))}
+                </div>
+            )}
+            {seed.image && (
+                <div className={styles.Display}>
+                    <img src={seed.image} />
                 </div>
             )}
             {!noLink && (

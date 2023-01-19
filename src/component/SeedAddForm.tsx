@@ -12,7 +12,8 @@ interface ISeedAddForm {
     init?: Omit<SeedType, "id"> & { id?: number }
 }
 
-const initialSeed: Omit<SeedType, "id"> = {
+const initialSeed: SeedType = {
+    id: 0,
     growingMonths: [],
     name: '',
     description: '',
@@ -26,7 +27,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
     const queryClient = useQueryClient()
 
     const addSeed = useMutation({
-        mutationFn: (newSeed: SeedType) => {
+        mutationFn: (newSeed: Partial<SeedType>) => {
             if (newSeed.id) {
                 return axios.put(`http://localhost:3000/seeds/${newSeed.id}`, newSeed)
             } else {
@@ -66,7 +67,30 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
     const submitSeed = (e: any) => {
         e.preventDefault();
         if (!seed.name) return;
-        addSeed.mutate(seed)
+
+        axios.get('https://www.googleapis.com/customsearch/v1', {
+            params: {
+                key: import.meta.env.VITE_API_GOOGLE,
+                cx: import.meta.env.VITE_CX_ID,
+                q: seed.name,
+                searchType: 'image',
+                num: 1
+            }
+        }).then(response => {
+            // Extract the first image result from the API response
+            if (!response.data.items.length) {
+                addSeed.mutate(seed)
+            } else {
+                addSeed.mutate({
+                    ...seed,
+                    image: response.data.items[0].link,
+                    images: [...response.data.items]
+                })
+            }
+        })
+            .catch(error => {
+                console.log(error);
+            });
     }
     return (
         <form onSubmit={submitSeed} className={styles.Form}>
@@ -91,6 +115,11 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
                     ))}
                 </div>
             </div>
+            {seed.image && (
+                <div className={styles.Display}>
+                    <img src={seed.image} />
+                </div>
+            )}
             <div className={styles.Actions}>
                 <Button onClick={submitSeed}>Ajouter</Button>
             </div>

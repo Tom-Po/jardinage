@@ -20,7 +20,7 @@ const Todo: React.FC<ITodo> = ({ todo, completeTodo, removeTodo }) => {
             className={`${styles.Todo} ${todo.isCompleted ? styles.Complete : ''}`}
             style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
         >
-            {`${todo.text} - ${todo.month}`}
+            {`${todo.text}`}
             <div>
                 <Button onClick={() => completeTodo(todo)}>
                     {todo.isCompleted
