@@ -31,9 +31,9 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
     const addSeed = useMutation({
         mutationFn: (newSeed: Partial<SeedType>) => {
             if (newSeed.id) {
-                return axios.put(`http://localhost:3000/seeds/${newSeed.id}`, newSeed)
+                return axios.put(`${import.meta.env.VITE_BASE_DB_URL}/seeds/${newSeed.id}`, newSeed)
             } else {
-                return axios.post(`http://localhost:3000/seeds/`, newSeed)
+                return axios.post(`${import.meta.env.VITE_BASE_DB_URL}/seeds/`, newSeed)
             }
         },
         onSuccess: () => {

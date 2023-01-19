@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const getSeeds = () => axios
-    .get("http://localhost:3000/seeds")
+    .get(`${import.meta.env.VITE_BASE_DB_URL}/seeds`)
     .then((res) => res.data)
 
 export default {

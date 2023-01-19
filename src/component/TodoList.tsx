@@ -14,14 +14,14 @@ const TodoList = () => {
 
     const deleteTodo = useMutation({
         mutationFn: (todo: TodoType) =>
-            axios.delete(`http://localhost:3000/todos/${todo.id}`),
+            axios.delete(`${import.meta.env.VITE_BASE_DB_URL}/todos/${todo.id}`),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['todos'] })
         },
     })
     const setCompletedTodo = useMutation({
         mutationFn: (todo: TodoType) =>
-            axios.put(`http://localhost:3000/todos/${todo.id}`, {
+            axios.put(`${import.meta.env.VITE_BASE_DB_URL}/todos/${todo.id}`, {
                 ...todo,
                 isCompleted: !todo.isCompleted
             }),

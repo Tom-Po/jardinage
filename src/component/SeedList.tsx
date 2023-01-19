@@ -7,13 +7,11 @@ import styles from './SeedList.module.css';
 
 const SeedList = () => {
     const queryClient = useQueryClient()
-    const navigate = useNavigate()
-
     const { data: seeds } = useQuery("seeds", getSeeds)
 
     const update = useMutation({
         mutationFn: (updatedSeed: SeedType) =>
-            axios.put(`http://localhost:3000/seeds/${updatedSeed.id}`, updatedSeed),
+            axios.put(`${import.meta.env.VITE_BASE_DB_URL}/seeds/${updatedSeed.id}`, updatedSeed),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
         },
@@ -31,7 +29,7 @@ const SeedList = () => {
 
     const deleteSeed = useMutation({
         mutationFn: (updatedSeed: SeedType) =>
-            axios.delete(`http://localhost:3000/seeds/${updatedSeed.id}`),
+            axios.delete(`${import.meta.env.VITE_BASE_DB_URL}/seeds/${updatedSeed.id}`),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
         },

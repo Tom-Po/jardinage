@@ -18,7 +18,7 @@ const TodoAddForm: React.FC<ITodoAddForm> = ({ onSubmit }) => {
 
     const addTodoMutation = useMutation({
         mutationFn: (newTodo: Omit<TodoType, "id">) =>
-            axios.post(`http://localhost:3000/todos/`, newTodo),
+            axios.post(`${import.meta.env.VITE_BASE_DB_URL}/todos/`, newTodo),
         onSuccess: () => {
             setTodoContent('')
             queryClient.invalidateQueries({ queryKey: ['todos'] })
