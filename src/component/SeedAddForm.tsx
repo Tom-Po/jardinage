@@ -66,11 +66,13 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         setSeed(updatedSeed)
     }
 
-    const submitSeed = (e: any) => {
+    const submitSeed = async (e: any) => {
         e.preventDefault();
         if (!seed.name) return;
 
-        axios.get('https://www.googleapis.com/customsearch/v1', {
+        let newSeed = { ...seed }
+
+        const images = await axios.get('https://www.googleapis.com/customsearch/v1', {
             params: {
                 key: import.meta.env.VITE_API_GOOGLE,
                 cx: import.meta.env.VITE_CX_ID,
@@ -78,21 +80,13 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
                 searchType: 'image',
                 num: 1
             }
-        }).then(response => {
-            // Extract the first image result from the API response
-            if (!response.data.items.length) {
-                addSeed.mutate(seed)
-            } else {
-                addSeed.mutate({
-                    ...seed,
-                    image: response.data.items[0].link,
-                    images: [...response.data.items]
-                })
-            }
         })
-            .catch(error => {
-                console.log(error);
-            });
+
+        if (images.data.items && images.data.items.length) {
+            newSeed.image = images.data.items[0].link
+            newSeed.images = images.data.items
+        }
+        addSeed.mutate(newSeed)
     }
     return (
         <form onSubmit={submitSeed} className={styles.Form}>
