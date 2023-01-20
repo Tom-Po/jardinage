@@ -72,17 +72,22 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
 
         let newSeed = { ...seed }
 
-        const images = await axios.get('https://www.googleapis.com/customsearch/v1', {
-            params: {
-                key: import.meta.env.VITE_API_GOOGLE,
-                cx: import.meta.env.VITE_CX_ID,
-                q: seed.name,
-                searchType: 'image',
-                num: 1
-            }
-        })
+        let images: any = null;
+        try {
+            images = await axios.get('https://www.googleapis.com/customsearch/v1', {
+                params: {
+                    key: import.meta.env.VITE_API_GOOGLE,
+                    cx: import.meta.env.VITE_CX_ID,
+                    q: seed.name,
+                    searchType: 'image',
+                    num: 1
+                }
+            })
+        } catch (e) {
+            console.log(e);
+        }
 
-        if (images.data.items && images.data.items.length) {
+        if (images && images.data.items && images.data.items.length) {
             newSeed.image = images.data.items[0].link
             newSeed.images = images.data.items
         }
