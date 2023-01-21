@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { Navigation } from "../component/Navigation"
 import styles from './Header.module.css'
 import { ReactComponent as Logo } from '../assets/Leaf.svg';
+import NavigationMobile from "../component/NavigationMobile";
 
 const Header = () => {
     const navigate = useNavigate()
@@ -14,6 +15,7 @@ const Header = () => {
                     {/* <div><span>Keenagro</span></div> */}
                 </div>
             </div>
+            <NavigationMobile />
             <Navigation />
             {/* Gardenizer */}
             {/* Legumz */}
