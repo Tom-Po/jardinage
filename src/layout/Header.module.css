@@ -23,6 +23,7 @@
     align-items: center;
     gap: 1rem;
     cursor: pointer;
+    z-index: 1000;
 }
 
 
@@ -32,4 +33,11 @@
 
 .Header span {
     color: var(--orange);
+}
+
+
+@media screen and (max-width: 768px) {
+    .Header {
+        justify-content: space-between;
+    }
 }
