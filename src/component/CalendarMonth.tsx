@@ -22,23 +22,23 @@ const CalendarMonth: React.FC<ICalendarMonth> = ({ name, availableSeeds }) => {
     return (
         <div key={name} className={styles.Month}>
             <h3 className={styles.MonthName}>{name}</h3>
+            <div className={styles.AvailableSeeds}>
+                {availableSeeds.sort((a, b) => a.name > b.name ? 1 : -1).map(seed => (
+                    <div key={seed.name} className={styles.Seed}>
+                        <div className={styles.Icon}><SeedSVG /></div>
+                        <div>{seed.name}</div>
+                    </div>
+                ))}
+            </div>
             {isFetching
                 ? <Loader />
-                : <>
-                    <div className={styles.AvailableSeeds}>
-                        {availableSeeds.sort((a, b) => a.name > b.name ? 1 : -1).map(seed => (
-                            <div key={seed.name} className={styles.Seed}>
-                                <div className={styles.Icon}><SeedSVG /></div>
-                                <div>{seed.name}</div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className={styles.TodoList}>
-                        {currentMonthTodos.map(todo => (
-                            <WithCrudTodo key={todo.id} todo={todo} />
-                        ))}
-                    </div>
-                </>}
+                :
+                <div className={styles.TodoList}>
+                    {currentMonthTodos.map(todo => (
+                        <WithCrudTodo key={todo.id} todo={todo} />
+                    ))}
+                </div>
+            }
         </div>
     )
 }

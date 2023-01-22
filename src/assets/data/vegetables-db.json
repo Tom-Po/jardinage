@@ -293,7 +293,7 @@
     {
       "id": 5,
       "text": "Troc de plante, Facebook",
-      "isCompleted": true,
+      "isCompleted": false,
       "month": 0
     },
     {
@@ -328,7 +328,7 @@
     },
     {
       "text": "Acheter courge",
-      "isCompleted": true,
+      "isCompleted": false,
       "month": 0,
       "id": 12
     },
