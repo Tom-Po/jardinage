@@ -8,11 +8,14 @@ import CalendarMonth from './CalendarMonth'
 import TodoAddForm from './TodoAddForm'
 import MyModal from '../screens/ShowModal'
 import Button from './Button'
+import { useNavigate } from 'react-router-dom'
 
 const Calendar = () => {
     const [showModal, setShowModal] = useState(false);
     // TODO remove this to make a month handler component and local fetch
     const { data: seeds } = useQuery("seeds", getSeeds)
+
+    const navigate = useNavigate()
 
     const sorted: ExtendedMonthType[] = useMemo(() => {
         let newSort = date.EXTENDED_MONTHS.slice(0);
@@ -38,12 +41,12 @@ const Calendar = () => {
 
     const addTodo = (
         <MyModal closeModal={closeModal} handleCloseButton={handleCloseButton} noFooter>
-            <>
+            <div className={styles.ModalContent}>
                 <h1>Ajouter un todo</h1>
                 <TodoAddForm onSubmit={(e: any) => {
                     closeModal()
                 }} />
-            </>
+            </div>
         </MyModal>
     );
 
@@ -51,6 +54,7 @@ const Calendar = () => {
         <>
             <h2>Calendrier</h2>
             <Button onClick={() => setShowModal(true)}>Ajouter un Todo</Button>
+            <Button onClick={() => navigate("/seeds/create")}>Ajouter une graine</Button>
             <div className={styles.Calendar}>
                 {sorted.map(({ name, availableSeeds }) => (
                     <CalendarMonth key={name} name={name} availableSeeds={availableSeeds} />

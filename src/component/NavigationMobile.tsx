@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { routes } from '../routes/routes'
 import styles from './NavigationMobile.module.css'
@@ -8,6 +8,16 @@ const NavigationMobile = () => {
     const toggleOpen = () => {
         setOpen(!open)
     }
+
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflowY = "hidden";
+        }
+
+        return () => {
+            document.body.style.overflowY = "scroll";
+        };
+    }, [open]);
 
     return (
         <div>

@@ -11,7 +11,7 @@ interface ICalendarMonth {
     availableSeeds: SeedType[]
 }
 const CalendarMonth: React.FC<ICalendarMonth> = ({ name, availableSeeds }) => {
-    const { data: todos = [] } = useQuery<TodoType[]>("todos", getTodos)
+    const { data: todos = [], isFetching } = useQuery<TodoType[]>("todos", getTodos)
 
     const currentMonthTodos = todos.filter(todo => {
         return todo.month === date.MONTHS.findIndex(month => month === name)
@@ -19,6 +19,11 @@ const CalendarMonth: React.FC<ICalendarMonth> = ({ name, availableSeeds }) => {
 
     const WithCrudTodo = withCrudTodo(Todo)
 
+    if (isFetching) {
+        return (
+            <div className={styles.Loader}>is fetching ...</div>
+        )
+    }
     return (
         <div key={name} className={styles.Month}>
             <h3 className={styles.MonthName}>{name}</h3>
