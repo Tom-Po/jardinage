@@ -1,5 +1,5 @@
 import styles from './Todo.module.css'
-import { ReactComponent as TrashbinSVG } from '../assets/Trashbin.svg'
+import { ReactComponent as TrashbinSVG } from '../assets/TrashBin.svg'
 import { useMutation, useQueryClient } from 'react-query'
 import axios from 'axios'
 
