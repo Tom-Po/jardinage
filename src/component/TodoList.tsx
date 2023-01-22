@@ -2,7 +2,7 @@ import axios from "axios";
 import { useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getTodos } from "../queries/Todos";
-import Todo, { TodoType } from "./Todo";
+import Todo, { TodoType, withCrudTodo } from "./Todo";
 import TodoAddForm from "./TodoAddForm";
 import styles from './TodoList.module.css';
 
@@ -29,6 +29,7 @@ const TodoList = () => {
             queryClient.invalidateQueries({ queryKey: ['todos'] })
         },
     })
+    const WithCrudTodo = withCrudTodo(Todo)
 
     return (
         <div>
@@ -39,12 +40,10 @@ const TodoList = () => {
                     ? <div>Aucune tâche à afficher <span className="success-text">ajoute une tâche !</span></div>
                     : <>
                         <div>{todos.length} | A faire : {uncompletedTodos}</div>
-                        {todos.sort(t => t.isCompleted ? 1 : -1).map((todo, index) => (
-                            <Todo
-                                key={index}
+                        {todos.sort(t => t.isCompleted ? 1 : -1).map((todo) => (
+                            <WithCrudTodo
+                                key={todo.id}
                                 todo={todo}
-                                completeTodo={(todo) => setCompletedTodo.mutate(todo)}
-                                removeTodo={(todo) => deleteTodo.mutate(todo)}
                             />
                         ))}
                     </>

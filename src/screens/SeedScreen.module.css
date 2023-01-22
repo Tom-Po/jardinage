@@ -14,5 +14,5 @@
 }
 
 .active {
-    background-color: lightgray;
+    background-color: var(--lightgray);
 }

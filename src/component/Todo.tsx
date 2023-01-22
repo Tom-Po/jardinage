@@ -1,5 +1,7 @@
-import Button from './Button';
 import styles from './Todo.module.css'
+import { ReactComponent as TrashbinSVG } from '../assets/Trashbin.svg'
+import { useMutation, useQueryClient } from 'react-query'
+import axios from 'axios'
 
 export type TodoType = {
     id: number,
@@ -11,32 +13,47 @@ export type TodoType = {
 interface ITodo {
     todo: TodoType,
     completeTodo: (todo: TodoType) => void,
-    removeTodo: (todo: TodoType) => void,
+    deleteTodo: (todo: TodoType) => void,
 }
 
-const Todo: React.FC<ITodo> = ({ todo, completeTodo, removeTodo }) => {
-    return (
-        <div
-            className={`${styles.Todo} ${todo.isCompleted ? styles.Complete : ''}`}
-            style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
-        >
-            {`${todo.text}`}
-            <div>
-                <Button onClick={() => completeTodo(todo)}>
-                    {todo.isCompleted
-                        ? "Annuler"
-                        : "Completer"
-                    }
-                </Button>
-            </div>
-            <div className={styles.Remove} onClick={() => removeTodo(todo)}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+export const withCrudTodo = (Component: React.FC<ITodo>) => {
+    const queryClient = useQueryClient()
+    const deleteTodo = useMutation({
+        mutationFn: (todo: TodoType) =>
+            axios.delete(`${import.meta.env.VITE_BASE_DB_URL}/todos/${todo.id}`),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['todos'] })
+        },
+    })
+    const completeTodo = useMutation({
+        mutationFn: (todo: TodoType) =>
+            axios.put(`${import.meta.env.VITE_BASE_DB_URL}/todos/${todo.id}`, {
+                ...todo,
+                isCompleted: !todo.isCompleted
+            }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['todos'] })
+        },
+    })
+    return (props: any) => <Component {...props} completeTodo={completeTodo.mutate} deleteTodo={deleteTodo.mutate} />
+}
 
+const Todo: React.FC<ITodo> = ({ todo, completeTodo = () => { }, deleteTodo = () => { } }) => {
+    return (
+        <div key={todo.id} className={`${styles.Todo}`}>
+            {todo.isCompleted && (
+                <div className={styles.Icon} onClick={() => completeTodo(todo)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                </div>
+            )}
+            <div className={styles.TodoContent} onClick={() => completeTodo(todo)}>{todo.text}</div>
+            <div className={styles.Remove} onClick={() => deleteTodo(todo)}>
+                <TrashbinSVG />
             </div>
-        </div>
-    );
+        </div >
+    )
 }
 
 export default Todo;

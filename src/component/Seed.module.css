@@ -76,5 +76,5 @@
 }
 
 .disabled {
-    color: lightgray
+    color: var(--lightgray)
 }

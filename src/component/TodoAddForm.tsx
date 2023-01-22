@@ -21,6 +21,7 @@ const TodoAddForm: React.FC<ITodoAddForm> = ({ onSubmit }) => {
             axios.post(`${import.meta.env.VITE_BASE_DB_URL}/todos/`, newTodo),
         onSuccess: () => {
             setTodoContent('')
+            onSubmit()
             queryClient.invalidateQueries({ queryKey: ['todos'] })
         },
     })

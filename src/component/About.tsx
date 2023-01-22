@@ -25,6 +25,12 @@ const About = () => (
                 {/* https://www.rustica.fr/recherche.html?recherche=cerise+griotte */}
             </ul>
             <div>mois par mois avec des cases de semis (ex radis de mars à octobre) </div>
+            <h1>Note de dev de cogumel</h1>
+            <ul>
+                <li>Seeds: ajouter gauge d'eau / nice to have: autres besoins</li>
+                <li>Simplifier l'affichage, une seule route, calendrier = graines et todos</li>
+                <li>WRAPPER <a href="https://blog.logrocket.com/using-react-cloneelement-function/">Wrapper</a></li>
+            </ul>
         </ul>
     </>
 )

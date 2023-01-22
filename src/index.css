@@ -78,6 +78,7 @@ select {
   --orange: #FFA300;
   --orange-light: #ffcb72;
   --dark: #222222;
+  --lightgray: #ededed;
 
   --accent-color: var(--orange);
   --secondary-accent-color: var(--green);
