@@ -1,39 +1,41 @@
 .Loader {
+    min-width: 30px;
+    min-height: 30px;
+    position: relative;
+    margin: auto;
     perspective: 500px;
     transform-style: preserve-3d;
     transform: rotate3d(2, 1, -1, 90deg);
+    z-index: 1000;
 }
 
-.Loader::before,
-.Loader::after {
+.Loader:before,
+.Loader:after {
+    position: absolute;
     border-radius: 50%;
     width: 16px;
     height: 16px;
     top: calc(50% - 8px);
-    background: #fff;
-    -webkit-animation-duration: 3s;
+    background: var(--accent-color);
+    content: "";
     animation-duration: 3s;
-    -webkit-animation-timing-function: linear;
     animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
 }
 
-.Loader::before {
+.Loader:before {
     left: 0;
     opacity: 0.7;
     border-top-right-radius: 0;
     transform-origin: right top;
-    -webkit-animation-name: flapL;
     animation-name: flapL;
 }
 
-.Loader::after {
+.Loader:after {
     left: 50%;
     opacity: 0.5;
     border-top-left-radius: 0;
     transform-origin: left top;
-    -webkit-animation-name: flapR;
     animation-name: flapR;
 }
 
