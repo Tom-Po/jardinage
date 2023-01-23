@@ -29,7 +29,6 @@ const About = () => (
             <ul>
                 <li>Seeds: ajouter gauge d'eau / nice to have: autres besoins</li>
                 <li>Simplifier l'affichage, une seule route, calendrier = graines et todos</li>
-                <li>WRAPPER <a href="https://blog.logrocket.com/using-react-cloneelement-function/">Wrapper</a></li>
             </ul>
         </ul>
     </>

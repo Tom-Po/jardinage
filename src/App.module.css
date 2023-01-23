@@ -19,3 +19,9 @@
 :global(a:focus) {
   color: var(--base-font-color);
 }
+
+@media screen and (max-width: 768px) {
+  .App {
+    padding: 0 1rem;
+  }
+}

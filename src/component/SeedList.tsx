@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { useNavigate } from "react-router-dom";
 import { getSeeds } from '../queries/Seeds';
 import Seed, { SeedType } from "./Seed";
 import styles from './SeedList.module.css';

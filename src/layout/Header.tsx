@@ -11,7 +11,7 @@ const Header = () => {
             <div className={styles.Logo} onClick={() => navigate('/')}>
                 <Logo />
                 <div className={styles.Brand}>
-                    <div><span>Organik</span></div>
+                    <div><span>Cogumel</span></div>
                     {/* <div><span>Keenagro</span></div> */}
                 </div>
             </div>
