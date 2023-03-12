@@ -87,3 +87,7 @@
 .disabled {
     color: var(--lightgray)
 }
+
+.active {
+    color: var(--green)
+}

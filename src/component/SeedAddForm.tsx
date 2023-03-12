@@ -17,6 +17,9 @@ interface ISeedAddForm {
 const initialSeed: SeedType = {
     id: 0,
     growingMonths: [],
+    growing: [],
+    seeding: [],
+    harvest: [],
     name: '',
     description: '',
     type: SEED_TYPE.AROMATIQUE
@@ -56,15 +59,35 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         })
     }
 
-    const toggleGrowingMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
+    const toggleSeedingMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
         const updatedSeed = { ...seed }
-        if (updatedSeed.growingMonths.includes(monthIndex)) {
-            updatedSeed.growingMonths.splice(updatedSeed.growingMonths.indexOf(monthIndex), 1)
+        if (updatedSeed.seeding.includes(monthIndex)) {
+            updatedSeed.seeding.splice(updatedSeed.seeding.indexOf(monthIndex), 1)
         } else {
-            updatedSeed.growingMonths.push(monthIndex)
+            updatedSeed.seeding.push(monthIndex)
         }
         setSeed(updatedSeed)
     }
+    const toggleGrowingMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
+        const updatedSeed = { ...seed }
+        if (updatedSeed.growing.includes(monthIndex)) {
+            updatedSeed.growing.splice(updatedSeed.growing.indexOf(monthIndex), 1)
+        } else {
+            updatedSeed.growing.push(monthIndex)
+        }
+        setSeed(updatedSeed)
+    }
+
+    const toggleHarvestMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
+        const updatedSeed = { ...seed }
+        if (updatedSeed.harvest.includes(monthIndex)) {
+            updatedSeed.harvest.splice(updatedSeed.harvest.indexOf(monthIndex), 1)
+        } else {
+            updatedSeed.harvest.push(monthIndex)
+        }
+        setSeed(updatedSeed)
+    }
+
 
     const submitSeed = async (e: any) => {
         e.preventDefault();
@@ -103,14 +126,36 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
                 <div>Notes:</div>
                 <textarea name="description" id="description" value={seed.description} onChange={(e) => setSeedDescription(e.target.value)}></textarea>
             </div>
-            <div>
-                <div>Mois de pousse</div>
-                <div className={styles.Months}>
-                    {date.MONTHS.map((month, i) => (
-                        <div key={i} onClick={() => toggleGrowingMonth(seed, i)} className={`${styles.Month} ${seed.growingMonths.includes(i) && styles.Active} `}>
-                            {month.slice(0, 3)}.
-                        </div>
-                    ))}
+            <div className={styles.MonthList}>
+                <div>
+                    <div>Semis</div>
+                    <div className={styles.Months}>
+                        {date.MONTHS.map((month, i) => (
+                            <div key={i} onClick={() => toggleSeedingMonth(seed, i)} className={`${styles.Month} ${seed.seeding.includes(i) && styles.Active} `}>
+                                {month.slice(0, 3)}.
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <div>Plantation</div>
+                    <div className={styles.Months}>
+                        {date.MONTHS.map((month, i) => (
+                            <div key={i} onClick={() => toggleGrowingMonth(seed, i)} className={`${styles.Month} ${seed.growing.includes(i) && styles.Active} `}>
+                                {month.slice(0, 3)}.
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <div>Récolte</div>
+                    <div className={styles.Months}>
+                        {date.MONTHS.map((month, i) => (
+                            <div key={i} onClick={() => toggleHarvestMonth(seed, i)} className={`${styles.Month} ${seed.harvest.includes(i) && styles.Active} `}>
+                                {month.slice(0, 3)}.
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
             {seed.image && (

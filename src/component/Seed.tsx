@@ -22,6 +22,9 @@ export type SeedType = {
     description: string,
     type: SEED_TYPE,
     growingMonths: number[],
+    growing: number[],
+    seeding: number[],
+    harvest: number[],
     image?: string,
     images?: string[]
 }
@@ -34,9 +37,13 @@ interface ISeed {
     updateSeed: Function,
     deleteSeed: Function,
 }
+type SHOW_MONTH_TYPE = "growing" | "seeding" | "harvest"
+const showMonthTypes = ["seeding", "growing", "harvest"]
+const showMonthTypeTranslation = ["Semis", "Plantation", "Récolte"]
 
 const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false, noLink = false, deleteSeed }) => {
     const [showMonths, setShowMonths] = useState(displayMonth)
+    const [showMonthType, setShowMonthType] = useState<SHOW_MONTH_TYPE>('seeding') // growing , seeding, harvest
     const [showModal, setShowModal] = useState(false);
 
     const closeModal = () => setShowModal(false);
@@ -55,6 +62,8 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
         </Modal>
     );
 
+    const period = seed[showMonthType] ?? seed.growingMonths
+
     return (
         <div className={styles.Seed}>
             <h3 onClick={() => setShowMonths(!showMonths)}>{seed.name}</h3>
@@ -65,13 +74,20 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
             </div>
             {showModal && editSeedModal}
             {showMonths && (
-                <div className={styles.Months}>
-                    {MONTHS.MONTHS.map((month, i) => (
-                        <div key={i} onClick={() => updateSeed(seed, i)} className={`${styles.Month} ${seed.growingMonths.includes(i) && styles.Active} `}>
-                            {month.slice(0, 3)}.
-                        </div>
-                    ))}
-                </div>
+                <>
+                    <div className={styles.MonthTypes}>
+                        <div>{showMonthTypes.map((month, i) => (
+                            <div className={month === showMonthType ? styles.active : ''} onClick={() => setShowMonthType(month)}>{showMonthTypeTranslation[i]}</div>
+                        ))}</div>
+                    </div>
+                    <div className={styles.Months}>
+                        {MONTHS.MONTHS.map((month, i) => (
+                            <div key={`${showMonthType}-${i}`} onClick={() => updateSeed(seed, i)} className={`${styles.Month} ${period.includes(i) && styles.Active} `}>
+                                {month.slice(0, 3)}.
+                            </div>
+                        ))}
+                    </div>
+                </>
             )}
             {seed.image && (
                 <div className={styles.Display}>

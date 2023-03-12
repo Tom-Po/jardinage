@@ -21,6 +21,11 @@
     text-align: center;
 }
 
+.MonthList {
+    display: flex;
+    gap: 1rem;
+}
+
 .Month:hover {
     background-color: var(--orange-light);
 }

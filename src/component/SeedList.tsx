@@ -37,7 +37,7 @@ const SeedList = () => {
     return (
         <div className={styles.Seeds}>
             {seeds && seeds.length
-                ? seeds.map((seed: SeedType, index: number) => (
+                ? seeds.sort((a: SeedType, b: SeedType) => a.name > b.name).map((seed: SeedType, index: number) => (
                     <Seed key={index} id={index} updateSeed={updateSeed} deleteSeed={(seed: SeedType) => deleteSeed.mutate(seed)
                     } seed={seed} />
                 ))

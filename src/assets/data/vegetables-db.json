@@ -1,49 +1,6 @@
 {
   "seeds": [
     {
-      "id": 1,
-      "growingMonths": [
-        0,
-        1
-      ],
-      "name": "Coriandre",
-      "description": "abc",
-      "type": "Aromatiques",
-      "image": "https://i.ytimg.com/vi/cshjKykp0Cs/maxresdefault.jpg"
-    },
-    {
-      "id": 3,
-      "growingMonths": [
-        7
-      ],
-      "name": "Celeri",
-      "description": "Notes à propos du celeri",
-      "type": "Aromatiques",
-      "image": "https://pics.casinointernationalpartnerships.com/458x458,q75,fit/http://dam-cache.intra.groupe-casino.fr/Produits/mm/G1/0/365440G.jpg",
-      "images": [
-        {
-          "kind": "customsearch#result",
-          "title": "CELERI BRANCHE VERT VRAC",
-          "htmlTitle": "<b>CELERI</b> BRANCHE VERT VRAC",
-          "link": "https://pics.casinointernationalpartnerships.com/458x458,q75,fit/http://dam-cache.intra.groupe-casino.fr/Produits/mm/G1/0/365440G.jpg",
-          "displayLink": "casinointernationalpartnerships.com",
-          "snippet": "CELERI BRANCHE VERT VRAC",
-          "htmlSnippet": "<b>CELERI</b> BRANCHE VERT VRAC",
-          "mime": "image/jpeg",
-          "fileFormat": "image/jpeg",
-          "image": {
-            "contextLink": "https://casinointernationalpartnerships.com/en/vert/33103-celeri-branche-vert-vrac-209180000000.html",
-            "height": 458,
-            "width": 458,
-            "byteSize": 17181,
-            "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzwOcozPFJQEJvBZAMRfSmS4Ebrdeuc_q8_B8qMlX7nvrgA3MkGtvqwD3R&s",
-            "thumbnailHeight": 128,
-            "thumbnailWidth": 128
-          }
-        }
-      ]
-    },
-    {
       "id": 4,
       "growingMonths": [
         1,
@@ -77,44 +34,6 @@
       ]
     },
     {
-      "id": 5,
-      "growingMonths": [
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10
-      ],
-      "name": "Choux fleur",
-      "description": "",
-      "type": "Aromatiques",
-      "image": "https://www.fondation-louisbonduelle.org/wp-content/uploads/2016/09/choux-fleur_5127238.png",
-      "images": [
-        {
-          "kind": "customsearch#result",
-          "title": "Cauliflower | The Louis Bonduelle Foundation",
-          "htmlTitle": "Cauliflower | The Louis Bonduelle Foundation",
-          "link": "https://www.fondation-louisbonduelle.org/wp-content/uploads/2016/09/choux-fleur_5127238.png",
-          "displayLink": "www.fondation-louisbonduelle.org",
-          "snippet": "Cauliflower | The Louis Bonduelle Foundation",
-          "htmlSnippet": "Cauliflower | The Louis Bonduelle Foundation",
-          "mime": "image/png",
-          "fileFormat": "image/png",
-          "image": {
-            "contextLink": "https://www.fondation-louisbonduelle.org/en/vegetable/cauliflower/",
-            "height": 336,
-            "width": 500,
-            "byteSize": 177767,
-            "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAVJsnjT6cftgB9TZrI2cEZigqC_LFv04I8Os47yWA2PMn2qg_DbaQNg&s",
-            "thumbnailHeight": 87,
-            "thumbnailWidth": 130
-          }
-        }
-      ]
-    },
-    {
       "id": 7,
       "growingMonths": [
         0,
@@ -143,39 +62,6 @@
             "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGMloJwSy-K0gwElqK7cSdIw_S10BUo5miE8LKJv8soF95jcS8kZZj3R8&s",
             "thumbnailHeight": 107,
             "thumbnailWidth": 143
-          }
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "growingMonths": [
-        0,
-        1
-      ],
-      "name": "Radis rouge",
-      "description": "",
-      "type": "Aromatiques",
-      "image": "https://www.aprifel.com/wp-content/uploads/2019/02/radis.jpg",
-      "images": [
-        {
-          "kind": "customsearch#result",
-          "title": "Radish: calories and nutrition facts | Aprifel",
-          "htmlTitle": "Radish: calories and nutrition facts | Aprifel",
-          "link": "https://www.aprifel.com/wp-content/uploads/2019/02/radis.jpg",
-          "displayLink": "www.aprifel.com",
-          "snippet": "Radish: calories and nutrition facts | Aprifel",
-          "htmlSnippet": "Radish: calories and nutrition facts | Aprifel",
-          "mime": "image/jpeg",
-          "fileFormat": "image/jpeg",
-          "image": {
-            "contextLink": "https://www.aprifel.com/en/nutritional-sheet/radish/",
-            "height": 630,
-            "width": 1200,
-            "byteSize": 144503,
-            "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZUpzMg9dxXpN4o51phk1gDfuED9wL6DB1dryc2aQ2HekLADvuGiGkGrI&s",
-            "thumbnailHeight": 79,
-            "thumbnailWidth": 150
           }
         }
       ]
@@ -216,39 +102,6 @@
       ]
     },
     {
-      "id": 10,
-      "growingMonths": [
-        1,
-        0
-      ],
-      "name": "Citron",
-      "description": "adza",
-      "type": "Aromatiques",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Chinesische_Zedrat_Zitrone.jpg/1200px-Chinesische_Zedrat_Zitrone.jpg",
-      "images": [
-        {
-          "kind": "customsearch#result",
-          "title": "Citron - Wikipedia",
-          "htmlTitle": "<b>Citron</b> - Wikipedia",
-          "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Chinesische_Zedrat_Zitrone.jpg/1200px-Chinesische_Zedrat_Zitrone.jpg",
-          "displayLink": "en.wikipedia.org",
-          "snippet": "Citron - Wikipedia",
-          "htmlSnippet": "<b>Citron</b> - Wikipedia",
-          "mime": "image/jpeg",
-          "fileFormat": "image/jpeg",
-          "image": {
-            "contextLink": "https://en.wikipedia.org/wiki/Citron",
-            "height": 854,
-            "width": 1200,
-            "byteSize": 274543,
-            "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoKtCXL7L3qO1RYPd255pwTkM1Z_m3OgjnH2LM3qL_MNnmtb-6P1SOYg&s",
-            "thumbnailHeight": 107,
-            "thumbnailWidth": 150
-          }
-        }
-      ]
-    },
-    {
       "id": 11,
       "growingMonths": [
         0,
@@ -278,6 +131,48 @@
             "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrTBUuRrK0YIAwdBUHXld9Fpk7nXaKr-b5B_PybDMDapEMIoQJnUolWA&s",
             "thumbnailHeight": 107,
             "thumbnailWidth": 143
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "growingMonths": [],
+      "growing": [
+        6,
+        7
+      ],
+      "seeding": [
+        3,
+        4
+      ],
+      "harvest": [
+        9,
+        8
+      ],
+      "name": "Courges",
+      "description": "",
+      "type": "Aromatiques",
+      "image": "https://i.pinimg.com/originals/38/c0/e4/38c0e4fd83b9d2077b324ccf020fb54a.jpg",
+      "images": [
+        {
+          "kind": "customsearch#result",
+          "title": "Quelle courge choisir ? Toutes les infos sur le blog | Variété de ...",
+          "htmlTitle": "Quelle <b>courge</b> choisir ? Toutes les infos sur le blog | Variété de ...",
+          "link": "https://i.pinimg.com/originals/38/c0/e4/38c0e4fd83b9d2077b324ccf020fb54a.jpg",
+          "displayLink": "www.pinterest.com",
+          "snippet": "Quelle courge choisir ? Toutes les infos sur le blog | Variété de ...",
+          "htmlSnippet": "Quelle <b>courge</b> choisir ? Toutes les infos sur le blog | Variété de ...",
+          "mime": "image/jpeg",
+          "fileFormat": "image/jpeg",
+          "image": {
+            "contextLink": "https://www.pinterest.com/pin/663014376386017931/",
+            "height": 800,
+            "width": 1200,
+            "byteSize": 110498,
+            "thumbnailLink": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6zwrYZR5H506SZ_oJKCqelK9EoxtgRcRS6OXkS7ItnTC-qb5Wc0pWYA&s",
+            "thumbnailHeight": 100,
+            "thumbnailWidth": 150
           }
         }
       ]
