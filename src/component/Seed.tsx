@@ -62,7 +62,8 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
         </Modal>
     );
 
-    const period = seed[showMonthType] ?? seed.growingMonths
+    const seedCopy: { [key: string]: any } = { ...seed }
+    const period = seedCopy[showMonthType] ?? seed.growingMonths
 
     return (
         <div className={styles.Seed}>
