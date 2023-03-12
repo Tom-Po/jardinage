@@ -37,7 +37,7 @@ interface ISeed {
     updateSeed: Function,
     deleteSeed: Function,
 }
-type SHOW_MONTH_TYPE = "growing" | "seeding" | "harvest"
+type SHOW_MONTH_TYPE = "growing" | "seeding" | "harvest" | string
 const showMonthTypes = ["seeding", "growing", "harvest"]
 const showMonthTypeTranslation = ["Semis", "Plantation", "Récolte"]
 
