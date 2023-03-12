@@ -8,12 +8,11 @@ type IModal = React.PropsWithChildren & {
     noFooter?: boolean
 }
 
-const MyModal: React.FC<IModal> = ({ closeModal, children, handleCloseButton, noFooter = false }) => {
+const Modal: React.FC<IModal> = ({ closeModal, children, handleCloseButton, noFooter = false }) => {
     useEffect(() => {
         const listener = (e: KeyboardEvent) => {
             if (e.key === "Escape") closeModal();
         }
-
         document.body.style.overflowY = "hidden";
         document.addEventListener('keydown', listener)
 
@@ -34,5 +33,4 @@ const MyModal: React.FC<IModal> = ({ closeModal, children, handleCloseButton, no
         document.querySelector("#modal-portal")!
     );
 };
-
-export default MyModal;
+export default Modal;

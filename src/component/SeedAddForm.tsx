@@ -96,9 +96,6 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
     return (
         <form onSubmit={submitSeed} className={styles.Form}>
             <div>
-                <h4>Nouveau semi</h4>
-            </div>
-            <div>
                 <div>Nom de la graine</div>
                 <input type="text" name="seed" value={seed.name} onSubmit={submitSeed} onChange={(e) => setSeedName(e.target.value)} />
             </div>

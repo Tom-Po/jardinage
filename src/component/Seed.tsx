@@ -3,7 +3,7 @@ import { ReactComponent as Edit } from '../assets/Edit.svg';
 import { ReactComponent as Rustica } from '../assets/RusticaNoir.svg';
 import { ReactComponent as TrashBin } from '../assets/TrashBin.svg';
 import MONTHS from '../constant/Date';
-import MyModal from '../screens/ShowModal';
+import Modal from '../screens/ShowModal';
 import Button from './Button';
 import styles from './Seed.module.css';
 import SeedAddForm from './SeedAddForm';
@@ -48,11 +48,11 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false,
     );
 
     const editSeedModal = (
-        <MyModal closeModal={closeModal} handleCloseButton={handleCloseButton} noFooter>
+        <Modal closeModal={closeModal} handleCloseButton={handleCloseButton} noFooter>
             <SeedAddForm init={seed} onSubmit={(e: any) => {
                 closeModal()
             }} />
-        </MyModal>
+        </Modal>
     );
 
     return (

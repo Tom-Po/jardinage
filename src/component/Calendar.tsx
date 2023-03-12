@@ -6,7 +6,7 @@ import { SeedType } from './Seed'
 import { getSeeds } from '../queries/Seeds';
 import CalendarMonth from './CalendarMonth'
 import TodoAddForm from './TodoAddForm'
-import MyModal from '../screens/ShowModal'
+import Modal from '../screens/ShowModal'
 import Button from './Button'
 import { useNavigate } from 'react-router-dom'
 
@@ -40,20 +40,19 @@ const Calendar = () => {
     );
 
     const addTodo = (
-        <MyModal closeModal={closeModal} handleCloseButton={handleCloseButton} noFooter>
+        <Modal closeModal={closeModal} handleCloseButton={handleCloseButton} noFooter>
             <div className={styles.ModalContent}>
                 <h1>Ajouter un todo</h1>
                 <TodoAddForm onSubmit={(e: any) => {
                     closeModal()
                 }} />
             </div>
-        </MyModal>
+        </Modal>
     );
 
     return (
         <>
-            <h2>Calendrier</h2>
-            <Button onClick={() => setShowModal(true)}>Ajouter un Todo</Button>
+            < Button onClick={() => setShowModal(true)}> Ajouter un Todo</Button >
             <Button onClick={() => navigate("/seeds/create")}>Ajouter une graine</Button>
             <div className={styles.Calendar}>
                 {sorted.map(({ name, availableSeeds }) => (
