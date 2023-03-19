@@ -1,4 +1,5 @@
 import axios from "axios"
+import { SeedType} from "../component/Seed"
 
 export const getSeeds = () => axios
     .get(`${import.meta.env.VITE_BASE_DB_URL}/seeds`)
