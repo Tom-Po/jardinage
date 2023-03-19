@@ -2,10 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import date from '../constant/Date';
+import { addSeed } from "../queries/Seeds";
 import Button from "./Button";
 import { SeedType, SEED_TYPE } from "./Seed";
 import styles from './SeedAddForm.module.css';
+import SeedCalendar from "./SeedCalendar";
 
 
 // Comment
@@ -28,17 +29,15 @@ const initialSeed: SeedType = {
 const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed, id: 0 } }) => {
     const [seed, setSeed] = useState(init)
 
+    const seeding = seed.seeding || []
+    const growing = seed.growing || []
+    const harvest = seed.harvest || []
+    
     const navigate = useNavigate()
     const queryClient = useQueryClient()
 
-    const addSeed = useMutation({
-        mutationFn: (newSeed: Partial<SeedType>) => {
-            if (newSeed.id) {
-                return axios.put(`${import.meta.env.VITE_BASE_DB_URL}/seeds/${newSeed.id}`, newSeed)
-            } else {
-                return axios.post(`${import.meta.env.VITE_BASE_DB_URL}/seeds/`, newSeed)
-            }
-        },
+    const createSeed = useMutation({
+        mutationFn: addSeed,
         onSuccess: () => {
             navigate('/seeds')
             queryClient.invalidateQueries({ queryKey: ['seeds'] })
@@ -59,7 +58,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         })
     }
 
-    const toggleSeedingMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
+    const toggleSeedingMonth = (monthIndex: number) => {
         const updatedSeed = { ...seed }
         if (updatedSeed.seeding.includes(monthIndex)) {
             updatedSeed.seeding.splice(updatedSeed.seeding.indexOf(monthIndex), 1)
@@ -68,7 +67,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         }
         setSeed(updatedSeed)
     }
-    const toggleGrowingMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
+    const toggleGrowingMonth = (monthIndex: number) => {
         const updatedSeed = { ...seed }
         if (updatedSeed.growing.includes(monthIndex)) {
             updatedSeed.growing.splice(updatedSeed.growing.indexOf(monthIndex), 1)
@@ -78,7 +77,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         setSeed(updatedSeed)
     }
 
-    const toggleHarvestMonth = (_: Omit<SeedType, "id">, monthIndex: number) => {
+    const toggleHarvestMonth = (monthIndex: number) => {
         const updatedSeed = { ...seed }
         if (updatedSeed.harvest.includes(monthIndex)) {
             updatedSeed.harvest.splice(updatedSeed.harvest.indexOf(monthIndex), 1)
@@ -87,7 +86,6 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         }
         setSeed(updatedSeed)
     }
-
 
     const submitSeed = async (e: any) => {
         e.preventDefault();
@@ -114,50 +112,36 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
             newSeed.image = images.data.items[0].link
             newSeed.images = images.data.items
         }
-        addSeed.mutate(newSeed)
+        createSeed.mutate(newSeed)
     }
+    
     return (
         <form onSubmit={submitSeed} className={styles.Form}>
             <div>
                 <div>Nom de la graine</div>
-                <input type="text" name="seed" value={seed.name} onSubmit={submitSeed} onChange={(e) => setSeedName(e.target.value)} />
+                <input
+                    type="text"
+                    name="seed"
+                    value={seed.name}
+                    onSubmit={submitSeed}
+                    onChange={(e) => setSeedName(e.target.value)}
+                />
             </div>
             <div>
                 <div>Notes:</div>
-                <textarea name="description" id="description" value={seed.description} onChange={(e) => setSeedDescription(e.target.value)}></textarea>
+                <textarea
+                    name="description"
+                    id="description"
+                    value={seed.description}
+                    onChange={(e) => setSeedDescription(e.target.value)}
+                ></textarea>
             </div>
-            <div className={styles.MonthList}>
-                <div>
-                    <div>Semis</div>
-                    <div className={styles.Months}>
-                        {date.MONTHS.map((month, i) => (
-                            <div key={i} onClick={() => toggleSeedingMonth(seed, i)} className={`${styles.Month} ${seed.seeding.includes(i) && styles.Active} `}>
-                                {month.slice(0, 3)}.
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div>
-                    <div>Plantation</div>
-                    <div className={styles.Months}>
-                        {date.MONTHS.map((month, i) => (
-                            <div key={i} onClick={() => toggleGrowingMonth(seed, i)} className={`${styles.Month} ${seed.growing.includes(i) && styles.Active} `}>
-                                {month.slice(0, 3)}.
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div>
-                    <div>Récolte</div>
-                    <div className={styles.Months}>
-                        {date.MONTHS.map((month, i) => (
-                            <div key={i} onClick={() => toggleHarvestMonth(seed, i)} className={`${styles.Month} ${seed.harvest.includes(i) && styles.Active} `}>
-                                {month.slice(0, 3)}.
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+            <SeedCalendar
+                periods={[seeding, growing, harvest]} 
+                toggleSeedingMonth={toggleSeedingMonth} 
+                toggleGrowingMonth={toggleGrowingMonth} 
+                toggleHarvestMonth={toggleHarvestMonth} 
+             />
             {seed.image && (
                 <div className={styles.Display}>
                     <img src={seed.image} />
