@@ -1,55 +1,41 @@
 .Seed {
     border: 1px solid grey;
-    margin-bottom: 1rem;
-    padding: 1rem;
+    border-radius: var(--border-radius);
     position: relative;
     display: flex;
     flex-direction: column;
+    height: 33vh;
 }
 
-.Delete {
+.Actions {
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .25rem;
+    border-radius: var(--border-radius);
+    border: 1px solid grey;
+
     position: absolute;
     right: 1rem;
     top: 1rem;
-    cursor: pointer;
+    opacity: .5;
+    transition: all 200ms;
 }
 
-.Delete svg:hover {
+.Actions:hover {
+    opacity: 1;
+}
+
+.Actions svg:hover {
     transform: scale(1.2);
 }
 
-.Delete svg {
+.Actions svg {
     width: 20px;
     height: 20px;
     transition: all 200ms ease;
-    margin-left: .5rem;
-}
-
-.Months {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 300px;
-    gap: .25rem;
-    margin-bottom: 1rem;
-}
-
-.Month {
-    padding: 1rem;
-    background-color: aliceblue;
-    flex-basis: calc(20% - 2rem);
-    cursor: pointer;
-    flex-grow: 1;
-    text-align: center;
-}
-
-.Month:hover {
-    background-color: var(--orange-light);
-}
-
-.Month.Active {
-    background-color: var(--orange);
-    color: white;
 }
 
 .ExtLink {
@@ -57,8 +43,9 @@
 }
 
 .ExtLink svg {
-    width: 100px;
+    width: 50px;
     transition: all 200ms ease;
+    fill: white;
 }
 
 .ExtLink:hover svg {
@@ -66,7 +53,7 @@
 }
 
 .Description {
-    margin-bottom: 2rem;
+    margin-bottom: .5rem;
     flex-grow: 1;
     flex-shrink: 1;
     white-space: nowrap;
@@ -74,18 +61,32 @@
     text-overflow: ellipsis;
 }
 
+.Content {
+    background-color: rgba(0, 0, 0, .45);
+    color: white;
+    padding: .5rem 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
 .Display {
-    margin-bottom: 1rem;
+    border-radius: inherit;
+    position: absolute;
+    inset: 0;
 }
 
 .Display img {
-    max-height: 100px;
+    height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: inherit;
 }
 
 .disabled {
-    color: var(--lightgray)
+    color: var(--lightgray);
 }
 
 .active {

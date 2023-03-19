@@ -1,4 +1,4 @@
-import styles from './SeedAddForm.module.css'
+import styles from './SeedCalendar.module.css'
 import date from '../constant/Date';
 
 interface ISeedCalendar {

@@ -18,7 +18,6 @@ function App() {
       <div className={styles.App}>
         <Header />
         <AppRouter />
-        <IconList />
       </div>
     </QueryClientProvider>
   );

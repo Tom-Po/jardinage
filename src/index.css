@@ -86,6 +86,8 @@ select {
 
   --success-text-color: var(--green);
   --base-font-color: var(--dark);
+
+  --border-radius: 4px;
 }
 
 body {

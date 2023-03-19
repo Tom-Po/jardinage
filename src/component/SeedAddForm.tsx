@@ -28,7 +28,8 @@ const initialSeed: SeedType = {
 
 const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed, id: 0 } }) => {
     const [seed, setSeed] = useState(init)
-
+    console.log(seed);
+    
     const seeding = seed.seeding || []
     const growing = seed.growing || []
     const harvest = seed.harvest || []
@@ -65,7 +66,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         } else {
             updatedSeed.seeding.push(monthIndex)
         }
-        setSeed(updatedSeed)
+        setSeed(updatedSeed)    
     }
     const toggleGrowingMonth = (monthIndex: number) => {
         const updatedSeed = { ...seed }
@@ -148,7 +149,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
                 </div>
             )}
             <div className={styles.Actions}>
-                <Button onClick={submitSeed}>Ajouter</Button>
+                <Button onClick={submitSeed}>Enregistrer</Button>
             </div>
         </form>
     )

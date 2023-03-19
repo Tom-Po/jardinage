@@ -1,11 +1,11 @@
 .Wrapper {
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: 100;
 }
 
 .Modal {
-    position: absolute;
+    position: fixed;
     inset: 5rem;
     display: flex;
     background-color: white;

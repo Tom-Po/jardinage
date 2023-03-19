@@ -1,0 +1,46 @@
+
+.MonthList {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.Months {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 300px;
+    gap: .25rem;
+    margin-bottom: 1rem;
+}
+
+.MonthList>div:first-of-type .Month.Active {
+    background-color: var(--brown);
+}
+
+
+.MonthList>div:nth-of-type(2) .Month.Active {
+    background-color: var(--green);
+}
+
+.Month {
+    padding: 1rem;
+    background-color: aliceblue;
+    flex-basis: calc(20% - 2rem);
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.MonthList {
+    display: flex;
+    gap: 1rem;
+}
+
+.Month:hover {
+    background-color: var(--orange-light);
+}
+
+.Month.Active {
+    background-color: var(--orange);
+    color: white;
+}
