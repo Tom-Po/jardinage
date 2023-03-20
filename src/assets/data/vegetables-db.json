@@ -2,7 +2,6 @@
   "seeds": [
     {
       "id": 1,
-      "growingMonths": [],
       "growing": [
         1,
         2
@@ -46,7 +45,6 @@
     },
     {
       "id": 2,
-      "growingMonths": [],
       "growing": [
         1
       ],
@@ -85,7 +83,6 @@
     },
     {
       "id": 3,
-      "growingMonths": [],
       "growing": [
         1,
         2

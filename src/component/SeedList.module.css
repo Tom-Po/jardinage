@@ -6,3 +6,17 @@
     column-gap: .5rem;
     row-gap: 15px;
 }
+
+.ExportButton {
+    position: absolute;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    padding: 1rem;
+    background-color: var(--accent-color);
+}
+.ExportButton svg {
+    stroke: white;
+}
