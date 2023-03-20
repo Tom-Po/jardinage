@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from './Modal.module.css'
+import { ReactComponent as CloseButton } from '../assets/Close.svg';
 
 type IModal = React.PropsWithChildren & {
     closeModal: any,
@@ -25,6 +26,9 @@ const Modal: React.FC<IModal> = ({ closeModal, children, handleCloseButton, noFo
     return ReactDOM.createPortal(
         <div className={styles.Wrapper}>
             <div className={styles.Backdrop} onClick={closeModal}></div>
+            <div className={styles.CloseButton} onClick={closeModal}>
+                <CloseButton />
+            </div>
             <div className={styles.Modal}>
                 {children}
                 {!noFooter && handleCloseButton}

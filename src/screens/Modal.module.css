@@ -1,7 +1,7 @@
 .Wrapper {
     position: fixed;
     inset: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .Modal {
@@ -18,10 +18,23 @@
 .Backdrop {
     background-color: rgba(0, 0, 0, .5);
     z-index: -1;
-    position: fixed;
+    position: absolute;
     inset: 0;
 }
 
+.CloseButton {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1200;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    transition: all 200ms;
+}
+.CloseButton:hover svg {
+    stroke: var(--accent-color)
+}
 @media screen and (max-width: 768px) {
     .Modal {
         inset: 0;

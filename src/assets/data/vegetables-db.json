@@ -104,12 +104,10 @@
       "images": [
         {
           "kind": "customsearch#result",
-          "title": "Cilantro: aromatic leaves and seeds - SOSCuisine",
-          "htmlTitle": "Cilantro: aromatic leaves and seeds - SOSCuisine",
+          "title": "https://wordpress.soscuisine.com/2009/10/cilantro-...",
+          "htmlTitle": "https://wordpress.soscuisine.com/2009/10/cilantro-...",
           "link": "https://wordpress.soscuisine.com/2009/10/cilantro-1287301_1280.jpg",
           "displayLink": "www.soscuisine.com",
-          "snippet": "Cilantro: aromatic leaves and seeds - SOSCuisine",
-          "htmlSnippet": "Cilantro: aromatic leaves and seeds - SOSCuisine",
           "mime": "image/jpeg",
           "fileFormat": "image/jpeg",
           "image": {

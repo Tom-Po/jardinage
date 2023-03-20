@@ -5,9 +5,13 @@
 
 .Display {
     margin-bottom: 1rem;
-    max-width: 300px;
+    max-height: 100px;
+    width: 100%;
 }
-
+.Display img {
+    object-fit: contain;
+    max-height: 100px;
+}
 .Actions {
     display: flex;
     justify-content: flex-end;
