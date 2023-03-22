@@ -45,9 +45,9 @@ const SeedList = () => {
             return Object.values(s).map(value => Array.isArray(value) ? value.join('|') : value)
         }).sort((a: any, b: any) => a.id > b.id)
 
-        let csvContent = "data:text/csv;charset=utf-8," 
-        + header
-        + cleanedObjects.map((e: any) => e.join(",")).join("\n");
+        let csvContent = "data:text/csv;charset=utf-8,"
+            + header
+            + cleanedObjects.map((e: any) => e.join(",")).join("\n");
         let encodedUri = encodeURI(csvContent);
         window.open(encodedUri);
     }
@@ -62,7 +62,7 @@ const SeedList = () => {
                 : <div>No seeds</div>}
             {seeds && (
                 <div className={styles.ExportButton} onClick={exportAllSeeds}>
-                    <Export />    
+                    <Export />
                 </div>
             )}
         </div>

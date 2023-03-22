@@ -9,13 +9,15 @@ import TodoAddForm from './TodoAddForm'
 import Modal from '../screens/ShowModal'
 import Button from './Button'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../redux/store'
+import { removeSeed } from '../redux/seeds'
 
 const Calendar = () => {
     const [showModal, setShowModal] = useState(false);
-
+    const dispatch = useAppDispatch()
     // TODO remove this to make a month handler component and local fetch
-    const { data: seeds } = useQuery("seeds", getSeeds)
-
+    const seeds = useAppSelector(state => state.seeds.seeds)
     const navigate = useNavigate()
 
     const sorted: ExtendedMonthType[] = (function () {
@@ -51,8 +53,13 @@ const Calendar = () => {
         </Modal>
     );
 
+
     return (
         <>
+            <h1>seeds from redux</h1>
+            {seeds.map(seed => (
+                <div onClick={() => dispatch(removeSeed(seed))}>{seed.name}</div>
+            ))}
             <Button onClick={() => setShowModal(true)}> Ajouter un Todo</Button >
             <Button onClick={() => navigate("/seeds/create")}>Ajouter une graine</Button>
             <div className={styles.Calendar}>

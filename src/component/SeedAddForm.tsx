@@ -3,11 +3,12 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { addSeed } from "../queries/Seeds";
+import { useAppDispatch } from "../redux/store";
 import Button from "./Button";
 import { SeedType, SEED_TYPE } from "./Seed";
 import styles from './SeedAddForm.module.css';
 import SeedCalendar from "./SeedCalendar";
-
+import { addSeed as reduxAddSeed } from "../redux/seeds";
 
 // Comment
 interface ISeedAddForm {
@@ -28,14 +29,14 @@ const initialSeed: SeedType = {
 
 const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed, id: 0 } }) => {
     const [seed, setSeed] = useState(init)
-    console.log(seed);
-    
+
     const seeding = seed.seeding || []
     const growing = seed.growing || []
     const harvest = seed.harvest || []
-    
+
     const navigate = useNavigate()
     const queryClient = useQueryClient()
+    const dispatch = useAppDispatch();
 
     const createSeed = useMutation({
         mutationFn: addSeed,
@@ -66,7 +67,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         } else {
             updatedSeed.seeding.push(monthIndex)
         }
-        setSeed(updatedSeed)    
+        setSeed(updatedSeed)
     }
     const toggleGrowingMonth = (monthIndex: number) => {
         const updatedSeed = { ...seed }
@@ -92,7 +93,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
         e.preventDefault();
         if (!seed.name) return;
 
-        let newSeed = { ...seed }
+        let newSeed = { ...seed, id: -1 }
 
         let images: any = null;
         try {
@@ -113,9 +114,11 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
             newSeed.image = images.data.items[0].link
             newSeed.images = images.data.items
         }
+        dispatch(reduxAddSeed(newSeed))
+
         createSeed.mutate(newSeed)
     }
-    
+
     return (
         <form onSubmit={submitSeed} className={styles.Form}>
             <div>
@@ -138,11 +141,11 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
                 ></textarea>
             </div>
             <SeedCalendar
-                periods={[seeding, growing, harvest]} 
-                toggleSeedingMonth={toggleSeedingMonth} 
-                toggleGrowingMonth={toggleGrowingMonth} 
-                toggleHarvestMonth={toggleHarvestMonth} 
-             />
+                periods={[seeding, growing, harvest]}
+                toggleSeedingMonth={toggleSeedingMonth}
+                toggleGrowingMonth={toggleGrowingMonth}
+                toggleHarvestMonth={toggleHarvestMonth}
+            />
             {seed.image && (
                 <div className={styles.Display}>
                     <img src={seed.image} />
