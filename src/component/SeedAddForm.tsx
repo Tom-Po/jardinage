@@ -35,14 +35,13 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
     const harvest = seed.harvest || []
 
     const navigate = useNavigate()
-    const queryClient = useQueryClient()
     const dispatch = useAppDispatch();
 
     const createSeed = useMutation({
         mutationFn: addSeed,
-        onSuccess: () => {
+        onSuccess: (data) => {
+            dispatch(reduxAddSeed(data.data))
             navigate('/seeds')
-            queryClient.invalidateQueries({ queryKey: ['seeds'] })
             onSubmit()
         },
     })
@@ -114,9 +113,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
             newSeed.image = images.data.items[0].link
             newSeed.images = images.data.items
         }
-        dispatch(reduxAddSeed(newSeed))
-
-        createSeed.mutate(newSeed)
+        createSeed.mutate({ ...newSeed, id: undefined })
     }
 
     return (

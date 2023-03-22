@@ -17,68 +17,120 @@ const MONTHS = [
 export type ExtendedMonthType = {
     name: string,
     daysCount: number,
-    availableSeeds: SeedType[]
+    availableSeeds: {
+        seeding: SeedType[],
+        growing: SeedType[],
+        harvest: SeedType[],
+    },
 }
 const EXTENDED_MONTHS: ExtendedMonthType[] = [
     {
         name: "Janvier",
         daysCount: 31,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Février",
         daysCount: 28,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Mars",
         daysCount: 31,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Avril",
         daysCount: 30,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Mai",
         daysCount: 31,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Juin",
         daysCount: 30,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Juillet",
         daysCount: 31,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Aout",
         daysCount: 31,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Septembre",
         daysCount: 30,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Octobre",
         daysCount: 31,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Novembre",
         daysCount: 30,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
     {
         name: "Décembre",
         daysCount: 30,
-        availableSeeds: [],
+        availableSeeds: {
+            seeding: [],
+            growing: [],
+            harvest: [],
+        },
     },
 ]
 

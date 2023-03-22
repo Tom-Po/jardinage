@@ -21,8 +21,11 @@ export type SeedType = {
     description: string,
     type: SEED_TYPE,
     growingMonths: number[],
-    growing: number[],
+    // Period represented by month index
     seeding: number[],
+    // Period represented by month index
+    growing: number[],
+    // Period represented by month index
     harvest: number[],
     image?: string,
     images?: string[]
@@ -33,11 +36,10 @@ interface ISeed {
     noLink?: boolean,
     id?: number,
     displayMonth?: boolean,
-    updateSeed: Function,
     deleteSeed: Function,
 }
 
-const Seed: React.FC<ISeed> = ({ id = 0, seed, updateSeed, displayMonth = false, noLink = false, deleteSeed }) => {
+const Seed: React.FC<ISeed> = ({ id = 0, seed, displayMonth = false, noLink = false, deleteSeed }) => {
     const [showModal, setShowModal] = useState(false);
 
     const closeModal = () => setShowModal(false);

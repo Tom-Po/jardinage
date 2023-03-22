@@ -15,6 +15,10 @@
     margin-bottom: 1rem;
 }
 
+.PeriodTitle {
+    display: flex;
+}
+
 
 .MonthName {
     text-align: center;
@@ -31,10 +35,12 @@
 .Seed {
     display: flex;
     align-items: center;
+    padding-left: 2.25rem;
 }
 
 .Seed svg,
-.Icon svg {
+.Icon svg,
+.PeriodTitle svg {
     width: 20px;
     height: 20px;
     margin-right: .5rem;

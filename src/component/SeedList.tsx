@@ -1,31 +1,13 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getSeeds } from '../queries/Seeds';
 import Seed, { SeedType } from "./Seed";
 import styles from './SeedList.module.css';
 import { ReactComponent as Export } from '../assets/Export.svg';
+import { useAppSelector } from "../redux/store";
 
 const SeedList = () => {
     const queryClient = useQueryClient()
-    const { data: seeds } = useQuery("seeds", getSeeds)
-
-    const update = useMutation({
-        mutationFn: (updatedSeed: SeedType) =>
-            axios.put(`${import.meta.env.VITE_BASE_DB_URL}/seeds/${updatedSeed.id}`, updatedSeed),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['seeds'] })
-        },
-    })
-
-    const updateSeed = (seed: SeedType, monthIndex: number) => {
-        let updatedSeed = { ...seed }
-        if (updatedSeed.growingMonths.includes(monthIndex)) {
-            updatedSeed.growingMonths.splice(updatedSeed.growingMonths.indexOf(monthIndex), 1)
-        } else {
-            updatedSeed.growingMonths.push(monthIndex)
-        }
-        update.mutate(updatedSeed)
-    }
+    const seeds = useAppSelector(state => state.seeds.seeds) as any;
 
     const deleteSeed = useMutation({
         mutationFn: (updatedSeed: SeedType) =>
@@ -55,8 +37,8 @@ const SeedList = () => {
     return (
         <div className={styles.Seeds}>
             {seeds && seeds.length
-                ? seeds.sort((a: SeedType, b: SeedType) => a.name > b.name).map((seed: SeedType, index: number) => (
-                    <Seed key={index} id={index} updateSeed={updateSeed} deleteSeed={(seed: SeedType) => deleteSeed.mutate(seed)
+                ? seeds.map((seed: SeedType, index: number) => (
+                    <Seed key={index} id={index} deleteSeed={(seed: SeedType) => deleteSeed.mutate(seed)
                     } seed={seed} />
                 ))
                 : <div>No seeds</div>}
