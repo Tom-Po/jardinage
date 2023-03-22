@@ -22,7 +22,7 @@ const Calendar = () => {
         let newSort = date.EXTENDED_MONTHS.slice(0);
         if (!seeds) return newSort
         seeds.forEach((seed: SeedType) => {
-            seed.growing.forEach(month => {
+            seed.growing && seed.growing.forEach(month => {
                 const idList = newSort[month].availableSeeds.map(s => s.id);
                 if (!idList.includes(seed.id)) {
                     newSort[month].availableSeeds.push(seed)
