@@ -8,6 +8,7 @@ import styles from './TodoList.module.css';
 
 const TodoList = () => {
     const { data: todos = [] } = useQuery<TodoType[]>("todos", getTodos)
+    
     const queryClient = useQueryClient()
 
     const uncompletedTodos = useMemo(() => todos && todos.filter(t => !t.isCompleted).length, [todos])

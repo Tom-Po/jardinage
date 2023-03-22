@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useQuery } from 'react-query'
 import date, { ExtendedMonthType } from '../constant/Date'
 import styles from './Calendar.module.css'
@@ -12,24 +12,25 @@ import { useNavigate } from 'react-router-dom'
 
 const Calendar = () => {
     const [showModal, setShowModal] = useState(false);
+
     // TODO remove this to make a month handler component and local fetch
     const { data: seeds } = useQuery("seeds", getSeeds)
 
     const navigate = useNavigate()
 
-    const sorted: ExtendedMonthType[] = useMemo(() => {
+    const sorted: ExtendedMonthType[] = (function () {
         let newSort = date.EXTENDED_MONTHS.slice(0);
-        if (seeds) {
-            seeds.forEach((seed: SeedType) => {
-                seed.growingMonths.forEach(month => {
-                    if (!newSort[month].availableSeeds.includes(seed)) {
-                        newSort[month].availableSeeds.push(seed)
-                    }
-                })
+        if (!seeds) return newSort
+        seeds.forEach((seed: SeedType) => {
+            seed.growing.forEach(month => {
+                const idList = newSort[month].availableSeeds.map(s => s.id);
+                if (!idList.includes(seed.id)) {
+                    newSort[month].availableSeeds.push(seed)
+                }
             })
-        }
+        })
         return newSort
-    }, [seeds])
+    })();
 
     const closeModal = () => setShowModal(false);
 
@@ -52,7 +53,7 @@ const Calendar = () => {
 
     return (
         <>
-            < Button onClick={() => setShowModal(true)}> Ajouter un Todo</Button >
+            <Button onClick={() => setShowModal(true)}> Ajouter un Todo</Button >
             <Button onClick={() => navigate("/seeds/create")}>Ajouter une graine</Button>
             <div className={styles.Calendar}>
                 {sorted.map(({ name, availableSeeds }) => (
@@ -63,6 +64,5 @@ const Calendar = () => {
         </>
     )
 }
-
 
 export default Calendar
