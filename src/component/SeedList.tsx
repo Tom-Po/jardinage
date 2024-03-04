@@ -37,9 +37,9 @@ const SeedList = () => {
     return (
         <div className={styles.Seeds}>
             {seeds && seeds.length
-                ? seeds.map((seed: { collection: string, key: string, props: SeedType, }, index: number) => (
-                    <Seed key={index} id={index} deleteSeed={(seed: any) => deleteSeed.mutate(seed.props)
-                    } seed={seed.props} />
+                ? seeds.map((seed: SeedType, index: number) => (
+                    <Seed key={index} id={index} deleteSeed={(seed: SeedType) => deleteSeed.mutate(seed)
+                    } seed={seed} />
                 ))
                 : <div>No seeds</div>}
             {seeds && (
