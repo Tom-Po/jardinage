@@ -58,6 +58,11 @@ const Seed: React.FC<ISeed> = ({ id = 0, seed, displayMonth = false, noLink = fa
         </Modal>
     );
 
+    if (!seed || !seed.name) {
+        debugger;
+
+    }
+
     return (
         <div className={styles.Seed}>
             {seed.image && (
