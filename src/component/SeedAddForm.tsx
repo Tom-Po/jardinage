@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { addSeed } from "../queries/Seeds";
+import { addSeed as reduxAddSeed } from "../redux/seeds";
 import { useAppDispatch } from "../redux/store";
 import Button from "./Button";
 import { SeedType, SEED_TYPE } from "./Seed";
 import styles from './SeedAddForm.module.css';
 import SeedCalendar from "./SeedCalendar";
-import { addSeed as reduxAddSeed } from "../redux/seeds";
 
 // Comment
 interface ISeedAddForm {
@@ -40,7 +40,7 @@ const SeedAddForm: React.FC<ISeedAddForm> = ({ onSubmit, init = { ...initialSeed
     const createSeed = useMutation({
         mutationFn: addSeed,
         onSuccess: (data) => {
-            dispatch(reduxAddSeed(data.data))
+            dispatch(reduxAddSeed(data.data.props))
             navigate('/seeds')
             onSubmit()
         },
