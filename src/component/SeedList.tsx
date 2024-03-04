@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import Seed, { SeedType } from "./Seed";
-import styles from './SeedList.module.css';
+import { useMutation, useQueryClient } from "react-query";
 import { ReactComponent as Export } from '../assets/Export.svg';
 import { useAppSelector } from "../redux/store";
+import Seed, { SeedType } from "./Seed";
+import styles from './SeedList.module.css';
 
 const SeedList = () => {
     const queryClient = useQueryClient()
@@ -37,9 +37,9 @@ const SeedList = () => {
     return (
         <div className={styles.Seeds}>
             {seeds && seeds.length
-                ? seeds.map((seed: SeedType, index: number) => (
-                    <Seed key={index} id={index} deleteSeed={(seed: SeedType) => deleteSeed.mutate(seed)
-                    } seed={seed} />
+                ? seeds.map((seed: { collection: string, key: string, props: SeedType, }, index: number) => (
+                    <Seed key={index} id={index} deleteSeed={(seed: any) => deleteSeed.mutate(seed.props)
+                    } seed={seed.props} />
                 ))
                 : <div>No seeds</div>}
             {seeds && (
